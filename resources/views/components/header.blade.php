@@ -8,10 +8,10 @@
                         <div class="offcanvas-head">
                             <div class="d-flex justify-content-between align-items-center mb-3">
                                 <a href="index.html" class="black-logo-responsive">
-                                    <img src="{{ asset('images/logo-dark.svg') }}" alt="logo-img">
+                                    <img src="{{ asset('images/logo.png') }}" alt="logo-img p-1" width="200">
                                 </a>
                                 <a href="index.html" class="white-logo-responsive">
-                                    <img src="{{ asset('images/logo.svg') }}" alt="logo-img">
+                                    <img src="{{ asset('images/logo.png') }}" alt="logo-img p-1" width="200">
                                 </a>
                                 <div class="offcanvas-close">
                                     <i class="ti ti-x"></i>
@@ -86,366 +86,20 @@
             <div class="header-nav">
                 <div class="main-menu-wrapper">
                     <div class="navbar-logo">
-                        <a class="logo-white header-logo" href="index.html">
-                            <img src="{{ asset('images/logo.svg') }}" class="logo" alt="Logo">
+                        <a class="logo-white header-logo" href="{{ route('home') }}">
+                            <img src="{{ asset('images/logo.png') }}" class="logo p-1" width="200" alt="Logo">
                         </a>
-                        <a class="logo-dark header-logo" href="index.html">
-                            <img src="{{ asset('images/logo-dark.svg') }}" class="logo" alt="Logo">
+                        <a class="logo-dark header-logo" href="{{ route('home') }}">
+                            <img src="{{ asset('images/logo.png') }}" class="logo p-1" width="200" alt="Logo">
                         </a>
                     </div>
                     <nav id="mobile-menu">
-                        <ul class="main-nav">
-                            <li class="has-submenu megamenu active">
-                                <a href="#" class="active">Home<i class="fa-solid fa-angle-down"></i></a>
-                                <ul class="submenu mega-submenu home-menu">
-                                    <li>
-                                        <div class="megamenu-wrapper">
-                                            <div
-                                                class="d-none d-lg-flex align-items-center justify-content-between flex-wrap">
-                                                <h6 class="mb-3">Home Pages</h6>
-                                                <a href="https://1.envato.market/EEEAOW"
-                                                    class="btn btn-dark btn-md mb-3 text-white d-inline-block w-auto purchase-btn"
-                                                    target="_blank">Purchase
-                                                    Template</a>
-                                            </div>
-                                            <div class="row g-lg-4 mb-3">
-                                                <div class="col-lg">
-                                                    <div class="single-demo">
-                                                        <div class="demo-img">
-                                                            <a href="index.html"><img
-                                                                    src="{{ asset('images/menu/home-11.jpg') }}"
-                                                                    class="img-fluid" alt="img"></a>
-                                                        </div>
-                                                        <div class="demo-info">
-                                                            <a href="index.html" class="active">All Services
-                                                                1</a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg">
-                                                    <div class="single-demo">
-                                                        <div class="demo-img">
-                                                            <a href="index-2.html"><img
-                                                                    src="{{ asset('images/menu/home-12.jpg') }}"
-                                                                    class="img-fluid" alt="img"></a>
-                                                        </div>
-                                                        <div class="demo-info">
-                                                            <a href="index-2.html">All Services 2</a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg">
-                                                    <div class="single-demo">
-                                                        <div class="demo-img">
-                                                            <a href="index-3.html"><img
-                                                                    src="{{ asset('images/menu/home-01.jpg') }}"
-                                                                    class="img-fluid" alt="img"></a>
-                                                        </div>
-                                                        <div class="demo-info">
-                                                            <a href="index-3.html">All Services 3</a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg">
-                                                    <div class="single-demo">
-                                                        <div class="demo-img">
-                                                            <a href="index-4.html"><img
-                                                                    src="{{ asset('images/menu/home-02.jpg') }}"
-                                                                    class="img-fluid" alt="img"></a>
-                                                        </div>
-                                                        <div class="demo-info">
-                                                            <a href="index-4.html">Hotels</a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg">
-                                                    <div class="single-demo">
-                                                        <div class="demo-img">
-                                                            <a href="index-5.html"><img
-                                                                    src="{{ asset('images/menu/home-03.jpg') }}"
-                                                                    class="img-fluid" alt="img"></a>
-                                                        </div>
-                                                        <div class="demo-info">
-                                                            <a href="index-5.html">Cars</a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg">
-                                                    <div class="single-demo">
-                                                        <div class="demo-img">
-                                                            <a href="index-6.html"><img
-                                                                    src="{{ asset('images/menu/home-04.jpg') }}"
-                                                                    class="img-fluid" alt="img"></a>
-                                                        </div>
-                                                        <div class="demo-info">
-                                                            <a href="index-6.html">Flight</a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row g-lg-4">
-                                                <div class="col-lg">
-                                                    <div class="single-demo">
-                                                        <div class="demo-img">
-                                                            <a href="index-7.html"><img
-                                                                    src="{{ asset('images/menu/home-05.jpg') }}"
-                                                                    class="img-fluid" alt="img"></a>
-                                                        </div>
-                                                        <div class="demo-info">
-                                                            <a href="index-7.html">Cruise</a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg">
-                                                    <div class="single-demo">
-                                                        <div class="demo-img">
-                                                            <a href="index-8.html"><img
-                                                                    src="{{ asset('images/menu/home-06.jpg') }}"
-                                                                    class="img-fluid" alt="img"></a>
-                                                        </div>
-                                                        <div class="demo-info">
-                                                            <a href="index-8.html">Tours</a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg">
-                                                    <div class="single-demo">
-                                                        <div class="demo-img">
-                                                            <a href="index-9.html"><img
-                                                                    src="{{ asset('images/menu/home-07.jpg') }}"
-                                                                    class="img-fluid" alt="img"></a>
-                                                        </div>
-                                                        <div class="demo-info">
-                                                            <a href="index-9.html">Bus</a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg">
-                                                    <div class="single-demo">
-                                                        <div class="demo-img">
-                                                            <a href="index-10.html"><img
-                                                                    src="{{ asset('images/menu/home-08.jpg') }}"
-                                                                    class="img-fluid" alt="img"></a>
-                                                        </div>
-                                                        <div class="demo-info">
-                                                            <a href="index-10.html">Guide</a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg">
-                                                    <div class="single-demo">
-                                                        <div class="demo-img">
-                                                            <a href="index-11.html"><img
-                                                                    src="{{ asset('images/menu/home-09.jpg') }}"
-                                                                    class="img-fluid" alt="img"></a>
-                                                        </div>
-                                                        <div class="demo-info">
-                                                            <a href="index-11.html">Activities</a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg">
-                                                    <div class="single-demo">
-                                                        <div class="demo-img">
-                                                            <a href="index-12.html"><img
-                                                                    src="{{ asset('images/menu/home-10.jpg') }}"
-                                                                    class="img-fluid" alt="img"></a>
-                                                        </div>
-                                                        <div class="demo-info">
-                                                            <a href="index-12.html">Visa</a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="has-submenu mega-innermenu">
-                                <a href="#">Flight<i class="fa-solid fa-angle-down"></i></a>
-                                <ul class="submenu mega-submenu">
-                                    <li>
-                                        <div class="megamenu-wrapper">
-                                            <div class="row">
-                                                <div class="col-lg-6">
-                                                    <h6>Flight Bookings</h6>
-                                                    <ul>
-                                                        <li><a href="flight-grid.html">Flight
-                                                                Grid</a></li>
-                                                        <li><a href="flight-list.html">Flight List</a></li>
-                                                        <li><a href="flight-details.html">Flight Details</a>
-                                                        </li>
-                                                        <li><a href="flight-booking-confirmation.html">Flight
-                                                                Booking</a></li>
-                                                        <li><a href="add-flight.html">Add Flight</a></li>
-                                                    </ul>
-                                                </div>
-                                                <div class="col-lg-6">
-                                                    <div class="menu-img">
-                                                        <img src="{{ asset('images/menu/flight.jpg') }}" alt="img"
-                                                            class="img-fluid">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="has-submenu mega-innermenu">
-                                <a href="#">Hotel<i class="fa-solid fa-angle-down"></i></a>
-                                <ul class="submenu mega-submenu">
-                                    <li>
-                                        <div class="megamenu-wrapper">
-                                            <div class="row">
-                                                <div class="col-lg-6">
-                                                    <h6>Hotel Bookings</h6>
-                                                    <ul>
-                                                        <li><a href="hotel-grid.html">Hotel Grid</a></li>
-                                                        <li><a href="hotel-list.html">Hotel List</a></li>
-                                                        <li><a href="hotel-map.html">Hotel Map</a></li>
-                                                        <li><a href="hotel-details.html">Hotel Details</a></li>
-                                                        <li><a href="booking-confirmation.html">Hotel
-                                                                Booking</a>
-                                                        </li>
-                                                        <li><a href="add-hotel.html">Add Hotel</a></li>
-                                                    </ul>
-                                                </div>
-                                                <div class="col-lg-6">
-                                                    <div class="menu-img">
-                                                        <img src="{{ asset('images/menu/hotel.jpg') }}" alt="img"
-                                                            class="img-fluid">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="has-submenu mega-innermenu">
-                                <a href="#">Car<i class="fa-solid fa-angle-down"></i></a>
-                                <ul class="submenu mega-submenu">
-                                    <li>
-                                        <div class="megamenu-wrapper">
-                                            <div class="row">
-                                                <div class="col-lg-6">
-                                                    <h6>Car Bookings</h6>
-                                                    <ul>
-                                                        <li><a href="car-grid.html">Car Grid</a></li>
-                                                        <li><a href="car-list.html">Car List</a></li>
-                                                        <li><a href="car-map.html">Car Map</a></li>
-                                                        <li><a href="car-details.html">Car Details</a></li>
-                                                        <li><a href="car-booking-confirmation.html">Car
-                                                                Booking</a>
-                                                        </li>
-                                                        <li><a href="add-car.html">Add Car</a></li>
-                                                    </ul>
-                                                </div>
-                                                <div class="col-lg-6">
-                                                    <div class="menu-img">
-                                                        <img src="{{ asset('images/menu/car.jpg') }}" alt="img"
-                                                            class="img-fluid">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="has-submenu mega-innermenu">
-                                <a href="#">Cruise<i class="fa-solid fa-angle-down"></i></a>
-                                <ul class="submenu mega-submenu">
-                                    <li>
-                                        <div class="megamenu-wrapper">
-                                            <div class="row">
-                                                <div class="col-lg-6">
-                                                    <h6>Cruise Bookings</h6>
-                                                    <ul>
-                                                        <li><a href="cruise-grid.html">Cruise Grid</a></li>
-                                                        <li><a href="cruise-list.html">Cruise List</a></li>
-                                                        <li><a href="cruise-map.html">Cruise Map</a></li>
-                                                        <li><a href="cruise-details.html">Cruise Details</a>
-                                                        </li>
-                                                        <li><a href="cruise-booking-confirmation.html">Cruise
-                                                                Booking</a></li>
-                                                        <li><a href="add-cruise.html">Add Cruise</a></li>
-                                                    </ul>
-                                                </div>
-                                                <div class="col-lg-6">
-                                                    <div class="menu-img">
-                                                        <img src="{{ asset('images/menu/cruise.jpg') }}" alt="img"
-                                                            class="img-fluid">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="has-submenu mega-innermenu">
-                                <a href="#">Tour<i class="fa-solid fa-angle-down"></i></a>
-                                <ul class="submenu mega-submenu">
-                                    <li>
-                                        <div class="megamenu-wrapper">
-                                            <div class="row">
-                                                <div class="col-lg-6">
-                                                    <h6>Tour Bookings</h6>
-                                                    <ul>
-                                                        <li><a href="tour-grid.html">Tour Grid</a></li>
-                                                        <li><a href="tour-list.html">Tour List</a></li>
-                                                        <li><a href="tour-map.html">Tour Map</a></li>
-                                                        <li><a href="tour-details.html">Tour Details</a></li>
-                                                        <li><a href="tour-booking-confirmation.html">Tour
-                                                                Booking</a></li>
-                                                        <li><a href="add-tour.html">Add Tour</a></li>
-                                                    </ul>
-                                                </div>
-                                                <div class="col-lg-6">
-                                                    <div class="menu-img">
-                                                        <img src="{{ asset('images/menu/tour.jpg') }}" alt="img"
-                                                            class="img-fluid">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="has-submenu mega-innermenu">
-                                <a href="#">Bus<i class="fa-solid fa-angle-down"></i></a>
-                                <ul class="submenu mega-submenu">
-                                    <li>
-                                        <div class="megamenu-wrapper">
-                                            <div class="row">
-                                                <div class="col-lg-6">
-                                                    <h6>Bus Bookings</h6>
-                                                    <ul>
-                                                        <li><a href="bus-list.html">Bus List</a></li>
-                                                        <li><a href="bus-left-sidebar.html">Bus Left Sidebar</a>
-                                                        </li>
-                                                        <li><a href="bus-right-sidebar.html">Bus Right
-                                                                Sidebar</a>
-                                                        </li>
-                                                        <li><a href="bus-details.html">Bus Details</a></li>
-                                                        <li><a href="bus-seat-selection.html">Bus Seat
-                                                                Selection</a>
-                                                        </li>
-                                                        <li><a href="bus-booking.html">Bus Booking</a></li>
-                                                        <li><a href="add-bus.html">Add Bus</a></li>
-                                                    </ul>
-                                                </div>
-                                                <div class="col-lg-6">
-                                                    <div class="menu-img">
-                                                        <img src="{{ asset('images/menu/bus.jpg') }}" alt="img"
-                                                            class="img-fluid">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                </ul>
+                        <ul class="main-nav gap-3">
+                            <li class="active">
+                                <a href="#" class="active">Home</a>
                             </li>
                             <li class="has-submenu megamenutab">
-                                <a href="#">Pages<i class="fa-solid fa-angle-down"></i></a>
+                                <a href="#">Services<i class="fa-solid fa-angle-down"></i></a>
                                 <ul class="submenu mega-submenu">
                                     <li>
                                         <div class="megamenu-wrapper">
@@ -626,7 +280,8 @@
                                                                                 Conditions</a></li>
                                                                         <li><a href="privacy-policy.html">Privacy
                                                                                 Policy</a></li>
-                                                                        <li><a href="login.html">Login</a></li>
+                                                                        <li><a href="{{ route('dashboard') }}">Login</a>
+                                                                        </li>
                                                                         <li><a href="register.html">Register</a>
                                                                         </li>
                                                                         <li><a href="forgot-password.html">Forgot
@@ -707,6 +362,9 @@
                                 </ul>
                             </li>
                             <li>
+                                <a href="contact-us.html">About Us</a>
+                            </li>
+                            <li>
                                 <a href="contact-us.html">Contact</a>
                             </li>
                         </ul>
@@ -718,9 +376,10 @@
                             </a>
                         </div>
                         <div class="d-flex align-items-center">
-                            <a href="#" class="text-white btn btn-primary w-100" data-bs-toggle="modal"
-                                data-bs-target="#login-modal"><i class="isax isax-lock5 me-1"></i>Login</a>
-                            <a href="#" class="text-white btn btn-dark w-100"><i
+                            <a href="{{ route('dashboard') }}" class="text-white btn btn-primary w-100"
+                                data-bs-toggle="modal" data-bs-target="#login-modal"><i
+                                    class="isax isax-lock5 me-1"></i>Login</a>
+                            <a href="{{ route('dashboard') }}" class="text-white btn btn-dark w-100"><i
                                     class="isax isax-user-minus me-1"></i>Register</a>
                         </div>
                         <div class="header__hamburger d-xl-none my-auto">

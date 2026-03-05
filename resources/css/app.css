@@ -1,3 +1,29 @@
-@import "./iconsax.css";
-@import "./style.css";
 @import "@tabler/icons-webfont/dist/tabler-icons.min.css";
+@import "./meanmenu.css";
+@import "./iconsax.css";
+@import "bootstrap/dist/css/bootstrap.min.css";
+@import "./style.css";
+
+section.hero-sec-eight::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgb(0 0 0 / 35%);
+}
+
+.flatpickr-day.selected {
+    background: #cf3425 !important;
+    border-color: #cf3425 !important;
+}
+
+.theiaStickySidebar.fixed {
+    position: sticky;
+    top: 75px;
+    height: 100vh;
+}
+
+.form-select:focus {
+    outline: none;
+    box-shadow: none;
+    border-color: inherit;
+}
