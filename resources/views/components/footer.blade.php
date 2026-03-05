@@ -22,12 +22,12 @@
                     </div>
                 </div>
             </div>
-            <div class="row align-items-center row-gap-3">
+            <div class="row align-items-center pt-4 row-gap-3">
                 <div class="col-md-5">
                     <div class="footer-about">
                         <div>
                             <a href="index.html" class="d-inline-block mb-1">
-                                <img src="{{ asset('images/logo.svg') }}" alt="logo">
+                                <img src="{{ asset('images/logo.png') }}" alt="logo" width="200">
                             </a>
                             <p class="text-white">Our mission is to offer you a seamless and enjoyable car
                                 rental
@@ -108,7 +108,9 @@
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-md-4">
-                    <p class="text-white mb-0">Copyright © 2026 <a href="#" class="fw-medium">DreamsTour</a></p>
+                    <p class="text-white mb-0">Copyright © {{ date('Y') }} <a href="#" class="fw-medium">Yamuna
+                            Prasath</a>
+                    </p>
                 </div>
                 <div class="col-md-4">
                     <div class="footer-bottom-links d-flex align-items-center justify-content-center gap-3">

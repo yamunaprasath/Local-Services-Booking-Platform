@@ -421,6 +421,8 @@ ul {
     list-style: none;
     margin-block-end: 0;
     padding: 0;
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
 }
 
 ul {
@@ -14805,6 +14807,7 @@ footer.footer-three .footer-bottom .policy-links li a:hover {
     top: 10px;
     left: 3%;
     z-index: -1;
+    width: 275px;
 }
 .footer-eight .footer-top .footer-subscribe {
     background-color: rgba(255, 255, 255, 0.1);
@@ -19664,7 +19667,9 @@ footer.footer-eleven .footer-bottom a:hover {
 .hero-sec-eight {
     position: relative;
     padding: 40px 0 40px;
-    background-image: url(/public/images/banner/banner-05.jpg);
+    /* background-image: url(/public/images/banner/banner-05.jpg); */
+    /* background-image: url(/public/images/banner/bg-fill.png); */
+    background-color: #cf3425;
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
@@ -19690,7 +19695,8 @@ footer.footer-eleven .footer-bottom a:hover {
 .hero-sec-eight::after {
     position: absolute;
     content: "";
-    background-image: url(/public/images/banner/banner-bg-05.png);
+    /* background-image: url(/public/images/banner/banner-bg-05.png); */
+    background-image: url(/public/images/banner/bg-trans.png);
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
@@ -19702,12 +19708,12 @@ footer.footer-eleven .footer-bottom a:hover {
     z-index: -1;
 }
 .hero-sec-eight .animate-text {
-    font-size: 14vw;
+    font-size: 11vw;
     color: #fff;
     text-transform: uppercase;
     z-index: -2;
     position: absolute;
-    top: 100px;
+    top: 150px;
     left: 50%;
     transform: translateX(-50%);
 }
