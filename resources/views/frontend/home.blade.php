@@ -119,10 +119,9 @@
                                                         </div>
                                                     </div>
                                                     <div class="form-item">
-                                                        <label class="form-label fs-14 text-default mb-1">Check
-                                                            In</label>
-                                                        <input type="text" class="form-control check-in"
-                                                            value="21-10-2026">
+                                                        <label class="form-label fs-14 text-default mb-1">
+                                                            Service require Dates</label>
+                                                        <input type="text" class="form-control available-date" value="">
                                                         <p class="fs-12 mb-0">Monday</p>
                                                     </div>
                                                     <div class="form-item dropdown">

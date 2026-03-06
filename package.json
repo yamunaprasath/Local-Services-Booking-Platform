@@ -21,6 +21,8 @@
         "bootstrap": "^5.3.8",
         "flatpickr": "^4.6.13",
         "jquery": "^3.7.1",
+        "quill": "^2.0.3",
+        "select2": "^4.1.0-rc.0",
         "theia-sticky-sidebar": "^2.0.0"
     }
 }

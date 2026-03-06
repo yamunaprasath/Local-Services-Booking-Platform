@@ -3,11 +3,17 @@ import flatpickr from "flatpickr";
 import "flatpickr/dist/flatpickr.min.css";
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import ApexCharts from 'apexcharts';
+import Quill from "quill";
+import "quill/dist/quill.snow.css";
+
 
 import $ from 'jquery';
 window.$ = window.jQuery = $;
 
+import select2 from "select2";
+import "select2/dist/css/select2.min.css";
 
+select2($);
 Promise.all([
     import('../plugins/slimscroll/jquery.slimscroll.min.js'),
     import('./jquery.meanmenu.min.js')
@@ -112,12 +118,6 @@ Promise.all([
         } else {
             $("header").removeClass("fixed");
         }
-    });
-
-    flatpickr(".check-in", {
-        dateFormat: "d-m-Y",
-        minDate: "today",
-        defaultDate: "today"
     });
 
     if ($('#earning-chart').length > 0) {
@@ -247,4 +247,135 @@ Promise.all([
             }
         });
     }
+
+    let today = new Date();
+    let afterThreeDays = new Date();
+    afterThreeDays.setDate(today.getDate() + 3);
+
+    flatpickr(".available-date", {
+        mode: "range",
+        dateFormat: "d-m-Y",
+        defaultDate: [today, afterThreeDays]
+    });
+
+    let quill;
+
+    const editor = document.querySelector(".snow-editor");
+
+    if (editor) {
+        quill = new Quill(editor, {
+            theme: "snow",
+            modules: {
+                toolbar: [
+                    ["bold", "italic", "underline"],
+                    [{ header: [null, 1, 2, 3, 4, 5, 6] }],
+                    [{ list: "ordered" }, { list: "bullet" }],
+                    ["link", "image", "video"]
+                ]
+            }
+        });
+    }
+
+    $('form').on('submit', function () {
+        if (quill) {
+            $('#description').val(quill.root.innerHTML);
+        }
+    });
+
+    $('form').on('submit', function () {
+        $('#description').val(quill.root.innerHTML);
+    });
+
+    // Add Highlight
+    $(".add-highlight").on('click', function () {
+        var addcontent =
+            '<div class="col-md-12 highlight-info">' +
+            '<div class="mb-3">' +
+            '<label for="highlights" class="form-label">Highlights</label>' +
+            '<div class="d-flex align-items-center">' +
+            '<input type="text" name="highlight[]" class="form-control">' +
+            '<a class="text-danger trash-icon d-flex align-items-center justify-content-center ms-3"><i class="isax isax-trash"></i></a>' +
+            '</div>'
+        '</div>' +
+            '</div>';
+        $(".add-highlight-info").append(addcontent);
+        $('.select').select2({
+            minimumResultsForSearch: -1,
+            width: '100%'
+        });
+        return false;
+    });
+
+    $(".add-highlight-info").on('click', '.trash-icon', function () {
+        $(this).closest('.highlight-info').remove();
+        return false;
+    });
+
+
+    $("#add-faq").click(function () {
+
+        let faq = `
+        <div class="row faq-item mb-3 align-items-center">
+            <div class="col-md-5">
+                <input type="text" name="faq_question[]" class="form-control"
+                    placeholder="Question *" required>
+            </div>
+            <div class="col-md-5">
+                <input type="text" name="faq_answer[]" class="form-control"
+                    placeholder="Answer *" required>
+            </div>
+            <div class="col-md-2">
+                <button type="button"
+                    class="trash-icon border-0 d-flex align-items-center justify-content-center remove-faq">
+                    <i class="isax isax-trash text-danger"></i>
+                </button>
+            </div>
+        </div>
+        `;
+
+        $("#faq-list").append(faq);
+
+    });
+
+    $(document).on("click", ".remove-faq", function () {
+        $(this).closest(".faq-item").remove();
+    });
+
+    const galleryInput = document.getElementById('galleryInput');
+
+    if (galleryInput) {
+        galleryInput.addEventListener('change', function (e) {
+
+            let preview = document.getElementById('galleryPreview');
+            preview.innerHTML = '';
+
+            let files = e.target.files;
+
+            for (let i = 0; i < files.length; i++) {
+
+                let reader = new FileReader();
+
+                reader.onload = function (event) {
+
+                    let html = `
+                    <div class="gallery-upload-img me-2">
+                        <img src="${event.target.result}" alt="Img">
+                        <span class="trash-icon d-flex align-items-center justify-content-center text-danger gallery-trash">
+                            <i class="isax isax-trash"></i>
+                        </span>
+                    </div>
+                `;
+
+                    preview.insertAdjacentHTML('beforeend', html);
+                };
+
+                reader.readAsDataURL(files[i]);
+            }
+
+        });
+    }
+
+    $(document).on("click", ".gallery-trash", function () {
+        $(this).parent().hide();
+    });
 });

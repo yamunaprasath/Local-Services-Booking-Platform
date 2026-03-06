@@ -1,7 +1,10 @@
-@import "@tabler/icons-webfont/dist/tabler-icons.min.css";
+@import "bootstrap/dist/css/bootstrap.min.css";
 @import "./meanmenu.css";
 @import "./iconsax.css";
-@import "bootstrap/dist/css/bootstrap.min.css";
+@import "@tabler/icons-webfont/dist/tabler-icons.min.css";
+@import "flatpickr/dist/flatpickr.min.css";
+
+/* Highest priority */
 @import "./style.css";
 
 section.hero-sec-eight::before {
@@ -26,4 +29,8 @@ section.hero-sec-eight::before {
     outline: none;
     box-shadow: none;
     border-color: inherit;
+}
+
+html {
+    scroll-padding-top: 80px;
 }

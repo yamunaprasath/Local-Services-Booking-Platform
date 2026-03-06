@@ -176,15 +176,16 @@
                             </div>
                         </div>
                         <div class="row">
+                            @foreach($services as $service)
                             <div class="col-xl-4 col-md-6 d-flex">
                                 <div class="place-item mb-4 flex-fill">
                                     <div class="place-img">
-                                        <a href="hotel-details.html">
-                                            <img src="{{ asset('/images/hotels/hotel-01.jpg') }}" class="img-fluid"
-                                                alt="img">
+                                        <a href="#">
+                                            <img src="{{ asset('images/service/' . $service->gallery[0]) }}"
+                                                class="img-fluid" alt="img">
                                         </a>
                                         <div class="edit-delete-item d-flex align-items-center">
-                                            <a href="edit-hotel.html"
+                                            <a href="{{ route('admin.service.list.edit', $service->id) }}"
                                                 class="me-2 d-inline-flex align-items-center justify-content-center"><i
                                                     class="isax isax-edit"></i></a>
                                             <a href="#" class="d-inline-flex align-items-center justify-content-center"
@@ -192,23 +193,27 @@
                                                     class="isax isax-trash"></i></a>
                                         </div>
                                     </div>
-                                    <div class="place-content">
-                                        <h5 class="mb-1 text-truncate"><a href="hotel-details.html">Hotel Plaza
-                                                Athenee</a></h5>
+                                    <div class="place-content activity-content">
+                                        <h5 class="mb-1 text-truncate"><a href="#">{{ $service->service_title }}
+                                            </a></h5>
                                         <p class="d-flex align-items-center mb-2"><i
-                                                class="isax isax-location5 me-2"></i>Ciutat Vella, Barcelona</p>
+                                                class="isax isax-location5 me-2"></i>{{ $service->city }},
+                                            {{ $service->state }}
+                                        </p>
                                         <div class="d-flex align-items-center justify-content-between border-top pt-3">
-                                            <h5 class="text-primary text-nowrap me-2">$500 <span
-                                                    class="fs-14 fw-normal text-default">/ Night</span></h5>
+                                            <h5 class="text-primary text-nowrap me-2"> ₹{{ $service->discount_price }}
+                                                <span class="text-gray-3 text-line">₹{{ $service->base_price }}</span>
+                                            </h5>
                                             <div class="d-flex align-items-center lh-1">
                                                 <a href="#inactive_list" data-bs-toggle="modal"
-                                                    class="d-flex align-items-center"><i
+                                                    class="d-flex align-items-center text-success"><i
                                                         class="isax isax-info-circle me-1"></i>Active</a>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                            @endforeach
                         </div>
                     </div>
                 </div>

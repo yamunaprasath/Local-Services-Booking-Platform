@@ -17,94 +17,172 @@
                                     <h5 class="mb-3">Services</h5>
                                     <ul class="add-tab-list">
                                         <li class="py-1"><a href="#basic_info" class="active">Basic Info</a></li>
+                                        <li class="py-1"><a href="#price">Price Details</a></li>
+                                        <li class="py-1"><a href="#available_days">Available Days</a></li>
                                         <li class="py-1"><a href="#location">Locations</a></li>
                                         <li class="py-1"><a href="#highlights">Highlights</a></li>
-                                        <li class="py-1"><a href="#room_types">Room Types</a></li>
-                                        <li class="py-1"><a href="#popular_amenities">Popular Amenities</a></li>
+                                        <li class="py-1"><a href="#available_services">Available Servies</a></li>
                                         <li class="py-1"><a href="#faq">FAQ</a></li>
                                         <li class="py-1"><a href="#gallery">Gallery</a></li>
-                                        <li class="py-1"><a href="#description">Description</a></li>
+                                        <li class="py-1"><a href="#service_description">Description</a></li>
                                     </ul>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="col-lg-9">
-                        <form action="#">
+                        @if(session('success'))
+                        <div class="alert alert-success alert-dismissible fade show">
+                            {{ session('success') }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                        </div>
+                        @endif
+                        @if(session('error'))
+                        <div class="alert alert-danger">
+                            {{ session('error') }}
+                        </div>
+                        @endif
+                        <form action="{{ route('admin.service.list.store') }}" method="POST"
+                            enctype="multipart/form-data">
+                            @csrf
                             <div class="card shadow-none" id="basic_info">
                                 <div class="card-header">
                                     <div class="d-flex align-items-center justify-content-between">
-                                        <h5 class="fs-18">Service Details</h5>
+                                        <h5 class="fs-18">Basic Details</h5>
                                     </div>
                                 </div>
                                 <div class="card-body pb-1">
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="mb-3">
-                                                <label for="hoter_name" class="form-label">Sevice Name</label>
-                                                <input type="text" class="form-control" value="">
+                                                <label for="hoter_name" class="form-label">Provider /Sevice
+                                                    Title</label>
+                                                <input type="text" class="form-control" name="service_title" value="">
                                             </div>
                                         </div>
                                         <div class="col-lg-4 col-md-6">
                                             <div class="mb-3">
                                                 <label for="" class="form-label">Category</label>
-                                                <select class="form-select select" name="select">
-                                                    <option value="" selected>Select</option>
-                                                    <option>Electricians</option>
-                                                    <option>Plumbers</option>
-                                                    <option>AC repair</option>
-                                                    <option>Cleaning services</option>
-                                                    <option>Tutors</option>
+                                                <select class="form-select select" name="service_category">
+                                                    <option value="" disabled selected>Select</option>
+                                                    <option value="Cleaning Services">Cleaning Services</option>
+                                                    <option value="Repair Services">Repair Services</option>
+                                                    <option value="Beauty Services">Beauty Services</option>
+                                                    <option value="Home Services">Home Services</option>
+                                                    <option value="Tutor Services">Tutor Services</option>
+                                                    <option value="Health">Health</option>
+                                                    <option value="Others">Others</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card shadow-none" id="price">
+                                <div class="card-header">
+                                    <div class="d-flex align-items-center justify-content-between">
+                                        <h5 class="fs-18">Price Details</h5>
+                                    </div>
+                                </div>
+                                <div class="card-body pb-1">
+                                    <div class="row">
+                                        <div class="col-lg-4 col-md-6">
+                                            <div class="mb-3">
+                                                <label class="form-label">Price Type</label>
+                                                <select class="form-select select" name="price_type">
+                                                    <option value="" selected disabled>Select</option>
+                                                    <option>Fixed</option>
+                                                    <option>Hourly</option>
+                                                    <option>Custom</option>
                                                 </select>
                                             </div>
                                         </div>
                                         <div class="col-lg-4 col-md-6">
                                             <div class="mb-3">
-                                                <label class="form-label">Established</label>
-                                                <div class="input-icon-end position-relative">
-                                                    <input type="text" class="form-control datetimepicker"
-                                                        placeholder="dd/mm/yyyy" value="02-05-2024">
-                                                    <span class="input-icon-addon">
-                                                        <i class="isax isax-calendar"></i>
-                                                    </span>
+                                                <label for="Base Price" class="form-label">Base Price(₹)</label>
+                                                <input type="number" class="form-control" name="base_price" value="100">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4 col-md-6">
+                                            <div class="mb-3">
+                                                <label for="Discount Price" class="form-label">Discount Price(₹)</label>
+                                                <input type="number" class="form-control" value="80"
+                                                    name="discount_price">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4 col-md-6 d-flex align-items-center">
+                                            <div class="form-check form-switch">
+                                                <input class="form-check-input" type="checkbox" name="tax" value="1">
+                                                <label class="form-check-label" for="flexSwitchCheckChecked">Tax
+                                                    Included</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card shadow-none" id="available_days">
+                                <div class="card-header">
+                                    <div class="d-flex align-items-center justify-content-between">
+                                        <h5 class="fs-18">Available Days</h5>
+                                    </div>
+                                </div>
+                                <div class="card-body pb-1">
+                                    <div class="row">
+                                        <div class="col-lg-6 col-md-6">
+                                            <div class="mb-3">
+                                                <div class="form-check d-flex align-items-center ps-0 mb-2">
+                                                    <input class="form-check-input ms-0 mt-0" type="checkbox"
+                                                        id="sunday" value="sunday" name="available_days[]">
+                                                    <label class="form-check-label ms-2" for="sunday">
+                                                        Sunday
+                                                    </label>
+                                                </div>
+                                                <div class="form-check d-flex align-items-center ps-0 mb-2">
+                                                    <input class="form-check-input ms-0 mt-0" type="checkbox" checked
+                                                        id="monday" value="monday" name="available_days[]">
+                                                    <label class="form-check-label ms-2" for="monday">
+                                                        Monday
+                                                    </label>
+                                                </div>
+                                                <div class="form-check d-flex align-items-center ps-0 mb-2">
+                                                    <input class="form-check-input ms-0 mt-0" type="checkbox" checked
+                                                        id="tuesday" value="tuesday" name="available_days[]">
+                                                    <label class="form-check-label ms-2" for="tuesday">
+                                                        Tuesday
+                                                    </label>
+                                                </div>
+                                                <div class="form-check d-flex align-items-center ps-0 mb-2">
+                                                    <input class="form-check-input ms-0 mt-0" type="checkbox" checked
+                                                        id="wednesday" value="wednesday" name="available_days[]">
+                                                    <label class="form-check-label ms-2" for="wednesday">
+                                                        Wednesday
+                                                    </label>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-lg-4 col-md-6">
+                                        <div class="col-lg-6 col-md-6">
+                                            <div class="form-check d-flex align-items-center ps-0 mb-2">
+                                                <input class="form-check-input ms-0 mt-0" type="checkbox" checked
+                                                    id="thursday" value="thursday" name="available_days[]">
+                                                <label class="form-check-label ms-2" for="thursday">
+                                                    Thursday
+                                                </label>
+                                            </div>
+                                            <div class="form-check d-flex align-items-center ps-0 mb-2">
+                                                <input class="form-check-input ms-0 mt-0" type="checkbox" checked
+                                                    id="friday" value="friday" name="available_days[]">
+                                                <label class="form-check-label ms-2" for="friday">
+                                                    Friday
+                                                </label>
+                                            </div>
                                             <div class="mb-3">
-                                                <label class="form-label">Renovation</label>
-                                                <div class="input-icon-end position-relative">
-                                                    <input type="text" class="form-control datetimepicker"
-                                                        placeholder="dd/mm/yyyy" value="02-05-2024">
-                                                    <span class="input-icon-addon">
-                                                        <i class="isax isax-calendar"></i>
-                                                    </span>
+                                                <div class="form-check d-flex align-items-center ps-0 mb-2">
+                                                    <input class="form-check-input ms-0 mt-0" type="checkbox" checked
+                                                        id="saturday" value="saturday" name="available_days[]">
+                                                    <label class="form-check-label ms-2" for="saturday">
+                                                        Saturday
+                                                    </label>
                                                 </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-4 col-md-6">
-                                            <div class="mb-3">
-                                                <label class="form-label">Star Ratings</label>
-                                                <select class="form-select select">
-                                                    <option>Select</option>
-                                                    <option>1</option>
-                                                    <option>2</option>
-                                                    <option selected>3</option>
-                                                    <option>4</option>
-                                                    <option>5</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-4 col-md-6">
-                                            <div class="mb-3">
-                                                <label class="form-label">Total Number Of Rooms</label>
-                                                <input type="text" class="form-control" value="10">
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-4 col-md-6">
-                                            <div class="mb-3">
-                                                <label class="form-label">Maximum Capacity</label>
-                                                <input type="text" class="form-control" value="50">
                                             </div>
                                         </div>
                                     </div>
@@ -120,43 +198,37 @@
                                     <div class="row">
                                         <div class="col-xl-3 col-md-6">
                                             <div class="mb-3">
-                                                <label class="form-label">Country</label>
-                                                <select class="form-select select">
-                                                    <option>Select</option>
-                                                    <option>United States</option>
-                                                    <option selected>Canada</option>
-                                                    <option>United Kingdom</option>
+                                                <label class="form-label">Location Type</label>
+                                                <select class="form-select select" name="location_type">
+                                                    <option selected disabled>Select</option>
+                                                    <option value="On-site">On-site</option>
+                                                    <option value="Online">Online</option>
+                                                    <option value="Both">Both</option>
                                                 </select>
                                             </div>
                                         </div>
                                         <div class="col-xl-3 col-md-6">
                                             <div class="mb-3">
                                                 <label class="form-label">City</label>
-                                                <input type="text" class="form-control" value="Oxford Street">
+                                                <input type="text" class="form-control" value="" name="city">
                                             </div>
                                         </div>
                                         <div class="col-xl-3 col-md-6">
                                             <div class="mb-3">
                                                 <label class="form-label">State</label>
-                                                <input type="text" class="form-control" value="London">
+                                                <input type="text" class="form-control" value="" name="state">
                                             </div>
                                         </div>
                                         <div class="col-xl-3 col-md-6">
                                             <div class="mb-3">
                                                 <label class="form-label">Zip Code</label>
-                                                <input type="text" class="form-control" value="654">
+                                                <input type="number" class="form-control" value="" name="zip_code">
                                             </div>
                                         </div>
                                         <div class="col-md-12">
                                             <div class="mb-3">
                                                 <label class="form-label">Address</label>
-                                                <input type="text" class="form-control" value="Oxford Street, London">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-12">
-                                            <div class="mb-3">
-                                                <label class="form-label">Address 1</label>
-                                                <input type="text" class="form-control" value="Ciutat Vella, Barcelona">
+                                                <input type="text" class="form-control" value="" name="address">
                                             </div>
                                         </div>
                                     </div>
@@ -173,7 +245,8 @@
                                         <div class="col-md-12">
                                             <div class="mb-3">
                                                 <label class="form-label">Highlights</label>
-                                                <input type="text" class="form-control" value="Spacious Rooms">
+                                                <input type="text" class="form-control" name="highlight[]"
+                                                    value="On time finish">
                                             </div>
                                         </div>
                                     </div>
@@ -183,7 +256,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="card shadow-none">
+                            <div class="card shadow-none" id="available_services">
                                 <div class="card-header">
                                     <div class="d-flex align-items-center justify-content-between">
                                         <h5 class="fs-18">Services</h5>
@@ -195,543 +268,152 @@
                                             <div class="mb-3">
                                                 <div class="form-check d-flex align-items-center ps-0 mb-2">
                                                     <input class="form-check-input ms-0 mt-0" type="checkbox"
-                                                        id="service-1">
+                                                        id="service-1" name="service[]" value="24-Hour Room Service">
                                                     <label class="form-check-label ms-2" for="service-1">
                                                         24-Hour Room Service
                                                     </label>
                                                 </div>
                                                 <div class="form-check d-flex align-items-center ps-0 mb-2">
                                                     <input class="form-check-input ms-0 mt-0" type="checkbox"
-                                                        id="service-2">
+                                                        id="service-2" name="service[]" value="In-Room Dining">
                                                     <label class="form-check-label ms-2" for="service-2">
                                                         In-Room Dining
                                                     </label>
                                                 </div>
                                                 <div class="form-check d-flex align-items-center ps-0 mb-2">
                                                     <input class="form-check-input ms-0 mt-0" type="checkbox"
-                                                        id="service-3">
+                                                        id="service-3" name="service[]" value="Concierge Services">
                                                     <label class="form-check-label ms-2" for="service-3">
                                                         Concierge Services
                                                     </label>
                                                 </div>
                                                 <div class="form-check d-flex align-items-center ps-0 mb-2">
                                                     <input class="form-check-input ms-0 mt-0" type="checkbox"
-                                                        id="service-4">
+                                                        id="service-4" name="service[]" value="Daily Housekeeping">
                                                     <label class="form-check-label ms-2" for="service-4">
                                                         Daily Housekeeping
                                                     </label>
                                                 </div>
                                                 <div class="form-check d-flex align-items-center ps-0 mb-2">
                                                     <input class="form-check-input ms-0 mt-0" type="checkbox"
-                                                        id="service-5">
+                                                        id="service-5" name="service[]" value="Front Desk Services">
                                                     <label class="form-check-label ms-2" for="service-5">
                                                         Front Desk Services
                                                     </label>
                                                 </div>
                                                 <div class="form-check d-flex align-items-center ps-0 mb-2">
                                                     <input class="form-check-input ms-0 mt-0" type="checkbox"
-                                                        id="service-6">
+                                                        id="service-6" name="service[]" value="On-Site Restaurants">
                                                     <label class="form-check-label ms-2" for="service-6">
                                                         On-Site Restaurants
                                                     </label>
                                                 </div>
                                             </div>
                                         </div>
+
                                         <div class="col-lg-4 col-md-6">
                                             <div class="mb-3">
                                                 <div class="form-check d-flex align-items-center ps-0 mb-2">
                                                     <input class="form-check-input ms-0 mt-0" type="checkbox"
-                                                        id="service-7">
+                                                        id="service-7" name="service[]"
+                                                        value="Check-In/Check-Out Assistance">
                                                     <label class="form-check-label ms-2" for="service-7">
                                                         Check-In/Check-Out Assistance
                                                     </label>
                                                 </div>
                                                 <div class="form-check d-flex align-items-center ps-0 mb-2">
                                                     <input class="form-check-input ms-0 mt-0" type="checkbox"
-                                                        id="service-8">
+                                                        id="service-8" name="service[]" value="Free luggage deposit">
                                                     <label class="form-check-label ms-2" for="service-8">
                                                         Free luggage deposit
                                                     </label>
                                                 </div>
                                                 <div class="form-check d-flex align-items-center ps-0 mb-2">
                                                     <input class="form-check-input ms-0 mt-0" type="checkbox"
-                                                        id="service-9">
+                                                        id="service-9" name="service[]"
+                                                        value="Laundry and Ironing Service">
                                                     <label class="form-check-label ms-2" for="service-9">
                                                         Laundry and Ironing Service
                                                     </label>
                                                 </div>
                                                 <div class="form-check d-flex align-items-center ps-0 mb-2">
                                                     <input class="form-check-input ms-0 mt-0" type="checkbox"
-                                                        id="service-10">
+                                                        id="service-10" name="service[]" value="Dry Cleaning Service">
                                                     <label class="form-check-label ms-2" for="service-10">
                                                         Dry Cleaning Service
                                                     </label>
                                                 </div>
                                                 <div class="form-check d-flex align-items-center ps-0 mb-2">
                                                     <input class="form-check-input ms-0 mt-0" type="checkbox"
-                                                        id="service-11">
+                                                        id="service-11" name="service[]"
+                                                        value="Hair and Beauty Service">
                                                     <label class="form-check-label ms-2" for="service-11">
                                                         Hair and Beauty Service
                                                     </label>
                                                 </div>
                                                 <div class="form-check d-flex align-items-center ps-0 mb-2">
                                                     <input class="form-check-input ms-0 mt-0" type="checkbox"
-                                                        id="service-12">
+                                                        id="service-12" name="service[]" value="In-Room Spa Treatments">
                                                     <label class="form-check-label ms-2" for="service-12">
                                                         In-Room Spa Treatments
                                                     </label>
                                                 </div>
                                             </div>
                                         </div>
+
                                         <div class="col-lg-4 col-md-6">
                                             <div class="mb-3">
                                                 <div class="form-check d-flex align-items-center ps-0 mb-2">
                                                     <input class="form-check-input ms-0 mt-0" type="checkbox"
-                                                        id="service-13">
+                                                        id="service-13" name="service[]" value="Valet Parking">
                                                     <label class="form-check-label ms-2" for="service-13">
                                                         Valet Parking
                                                     </label>
                                                 </div>
                                                 <div class="form-check d-flex align-items-center ps-0 mb-2">
                                                     <input class="form-check-input ms-0 mt-0" type="checkbox"
-                                                        id="service-14">
+                                                        id="service-14" name="service[]" value="Babysitting">
                                                     <label class="form-check-label ms-2" for="service-14">
                                                         Babysitting
                                                     </label>
                                                 </div>
                                                 <div class="form-check d-flex align-items-center ps-0 mb-2">
                                                     <input class="form-check-input ms-0 mt-0" type="checkbox"
-                                                        id="service-15">
+                                                        id="service-15" name="service[]" value="Dry Cleaning Service">
                                                     <label class="form-check-label ms-2" for="service-15">
                                                         Dry Cleaning Service
                                                     </label>
                                                 </div>
                                                 <div class="form-check d-flex align-items-center ps-0 mb-2">
                                                     <input class="form-check-input ms-0 mt-0" type="checkbox"
-                                                        id="service-16">
+                                                        id="service-16" name="service[]" value="Wake-Up Call Service">
                                                     <label class="form-check-label ms-2" for="service-16">
                                                         Wake-Up Call Service
                                                     </label>
                                                 </div>
                                                 <div class="form-check d-flex align-items-center ps-0 mb-2">
                                                     <input class="form-check-input ms-0 mt-0" type="checkbox"
-                                                        id="service-17">
+                                                        id="service-17" name="service[]" value="Translator Service">
                                                     <label class="form-check-label ms-2" for="service-17">
                                                         Translator Service
                                                     </label>
                                                 </div>
                                                 <div class="form-check d-flex align-items-center ps-0 mb-2">
                                                     <input class="form-check-input ms-0 mt-0" type="checkbox"
-                                                        id="service-18">
+                                                        id="service-18" name="service[]"
+                                                        value="Currency Exchange Service">
                                                     <label class="form-check-label ms-2" for="service-18">
                                                         Currency Exchange Service
                                                     </label>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card shadow-none">
-                                <div class="card-header">
-                                    <div class="d-flex align-items-center justify-content-between">
-                                        <h5 class="fs-18">Accessibility</h5>
-                                    </div>
-                                </div>
-                                <div class="card-body pb-1">
-                                    <div class="row">
-                                        <div class="col-lg-4 col-md-6">
+
+                                        <div class="col-xl-6 col-md-6 pt-4">
                                             <div class="mb-3">
-                                                <div class="form-check d-flex align-items-center ps-0 mb-2">
-                                                    <input class="form-check-input ms-0 mt-0" type="checkbox"
-                                                        id="accessibility-1">
-                                                    <label class="form-check-label ms-2" for="accessibility-1">
-                                                        Wheelchair accessible
-                                                    </label>
-                                                </div>
-                                                <div class="form-check d-flex align-items-center ps-0 mb-2">
-                                                    <input class="form-check-input ms-0 mt-0" type="checkbox"
-                                                        id="accessibility-2">
-                                                    <label class="form-check-label ms-2" for="accessibility-2">
-                                                        Visual alarms in hallways
-                                                    </label>
-                                                </div>
-                                                <div class="form-check d-flex align-items-center ps-0 mb-2">
-                                                    <input class="form-check-input ms-0 mt-0" type="checkbox"
-                                                        id="accessibility-3">
-                                                    <label class="form-check-label ms-2" for="accessibility-3">
-                                                        Elevator
-                                                    </label>
-                                                </div>
-                                                <div class="form-check d-flex align-items-center ps-0 mb-2">
-                                                    <input class="form-check-input ms-0 mt-0" type="checkbox"
-                                                        id="accessibility-4">
-                                                    <label class="form-check-label ms-2" for="accessibility-4">
-                                                        Braille/raised signage
-                                                    </label>
-                                                </div>
-                                                <div class="form-check d-flex align-items-center ps-0 mb-2">
-                                                    <input class="form-check-input ms-0 mt-0" type="checkbox"
-                                                        id="accessibility-5">
-                                                    <label class="form-check-label ms-2" for="accessibility-5">
-                                                        Roll-in shower with a bench or seat
-                                                    </label>
-                                                </div>
-                                                <div class="form-check d-flex align-items-center ps-0 mb-2">
-                                                    <input class="form-check-input ms-0 mt-0" type="checkbox"
-                                                        id="accessibility-6">
-                                                    <label class="form-check-label ms-2" for="accessibility-6">
-                                                        Grab bars near the toilet and shower
-                                                    </label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-4 col-md-6">
-                                            <div class="mb-3">
-                                                <div class="form-check d-flex align-items-center ps-0 mb-2">
-                                                    <input class="form-check-input ms-0 mt-0" type="checkbox"
-                                                        id="accessibility-7">
-                                                    <label class="form-check-label ms-2" for="accessibility-7">
-                                                        Wheelchair-accessible gym
-                                                    </label>
-                                                </div>
-                                                <div class="form-check d-flex align-items-center ps-0 mb-2">
-                                                    <input class="form-check-input ms-0 mt-0" type="checkbox"
-                                                        id="accessibility-8">
-                                                    <label class="form-check-label ms-2" for="accessibility-8">
-                                                        Wheelchair-accessible business center
-                                                    </label>
-                                                </div>
-                                                <div class="form-check d-flex align-items-center ps-0 mb-2">
-                                                    <input class="form-check-input ms-0 mt-0" type="checkbox"
-                                                        id="accessibility-9">
-                                                    <label class="form-check-label ms-2" for="accessibility-9">
-                                                        Wheelchair-accessible lounge
-                                                    </label>
-                                                </div>
-                                                <div class="form-check d-flex align-items-center ps-0 mb-2">
-                                                    <input class="form-check-input ms-0 mt-0" type="checkbox"
-                                                        id="accessibility-10">
-                                                    <label class="form-check-label ms-2" for="accessibility-10">
-                                                        Wheelchair-accessible concierge desk
-                                                    </label>
-                                                </div>
-                                                <div class="form-check d-flex align-items-center ps-0 mb-2">
-                                                    <input class="form-check-input ms-0 mt-0" type="checkbox"
-                                                        id="accessibility-11">
-                                                    <label class="form-check-label ms-2" for="accessibility-11">
-                                                        Lowered towel racks
-                                                    </label>
-                                                </div>
-                                                <div class="form-check d-flex align-items-center ps-0 mb-2">
-                                                    <input class="form-check-input ms-0 mt-0" type="checkbox"
-                                                        id="accessibility-12">
-                                                    <label class="form-check-label ms-2" for="accessibility-12">
-                                                        Braille on room numbers, elevator buttons
-                                                    </label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-4 col-md-6">
-                                            <div class="mb-3">
-                                                <div class="form-check d-flex align-items-center ps-0 mb-2">
-                                                    <input class="form-check-input ms-0 mt-0" type="checkbox"
-                                                        id="accessibility-13">
-                                                    <label class="form-check-label ms-2" for="accessibility-13">
-                                                        Step-free or ramped access
-                                                    </label>
-                                                </div>
-                                                <div class="form-check d-flex align-items-center ps-0 mb-2">
-                                                    <input class="form-check-input ms-0 mt-0" type="checkbox"
-                                                        id="accessibility-14">
-                                                    <label class="form-check-label ms-2" for="accessibility-14">
-                                                        Automatic doors
-                                                    </label>
-                                                </div>
-                                                <div class="form-check d-flex align-items-center ps-0 mb-2">
-                                                    <input class="form-check-input ms-0 mt-0" type="checkbox"
-                                                        id="accessibility-15">
-                                                    <label class="form-check-label ms-2" for="accessibility-15">
-                                                        Grab bars in the bathroom
-                                                    </label>
-                                                </div>
-                                                <div class="form-check d-flex align-items-center ps-0 mb-2">
-                                                    <input class="form-check-input ms-0 mt-0" type="checkbox"
-                                                        id="accessibility-16">
-                                                    <label class="form-check-label ms-2" for="accessibility-16">
-                                                        Wide doorways
-                                                    </label>
-                                                </div>
-                                                <div class="form-check d-flex align-items-center ps-0 mb-2">
-                                                    <input class="form-check-input ms-0 mt-0" type="checkbox"
-                                                        id="accessibility-17">
-                                                    <label class="form-check-label ms-2" for="accessibility-17">
-                                                        Lowered switches
-                                                    </label>
-                                                </div>
-                                                <div class="form-check d-flex align-items-center ps-0 mb-2">
-                                                    <input class="form-check-input ms-0 mt-0" type="checkbox"
-                                                        id="accessibility-18">
-                                                    <label class="form-check-label ms-2" for="accessibility-18">
-                                                        Accessible curtains
-                                                    </label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card shadow-none" id="room_types">
-                                <div class="card-header">
-                                    <div class="d-flex align-items-center justify-content-between">
-                                        <h5 class="fs-18">Room Types</h5>
-                                    </div>
-                                </div>
-                                <div class="card-body pb-1">
-                                    <div class="row">
-                                        <div class="col-lg-4 col-md-6">
-                                            <div class="mb-3">
-                                                <div class="form-check d-flex align-items-center ps-0 mb-2">
-                                                    <input class="form-check-input ms-0 mt-0" type="checkbox"
-                                                        id="room-1">
-                                                    <label class="form-check-label ms-2" for="room-1">
-                                                        Single Room
-                                                    </label>
-                                                </div>
-                                                <div class="form-check d-flex align-items-center ps-0 mb-2">
-                                                    <input class="form-check-input ms-0 mt-0" type="checkbox"
-                                                        id="room-2">
-                                                    <label class="form-check-label ms-2" for="room-2">
-                                                        Double Room
-                                                    </label>
-                                                </div>
-                                                <div class="form-check d-flex align-items-center ps-0 mb-2">
-                                                    <input class="form-check-input ms-0 mt-0" type="checkbox"
-                                                        id="room-3">
-                                                    <label class="form-check-label ms-2" for="room-3">
-                                                        Twin Room
-                                                    </label>
-                                                </div>
-                                                <div class="form-check d-flex align-items-center ps-0 mb-2">
-                                                    <input class="form-check-input ms-0 mt-0" type="checkbox"
-                                                        id="room-4">
-                                                    <label class="form-check-label ms-2" for="room-4">
-                                                        Deluxe Room
-                                                    </label>
-                                                </div>
-                                                <div class="form-check d-flex align-items-center ps-0 mb-2">
-                                                    <input class="form-check-input ms-0 mt-0" type="checkbox"
-                                                        id="room-5">
-                                                    <label class="form-check-label ms-2" for="room-5">
-                                                        Suite
-                                                    </label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-4 col-md-6">
-                                            <div class="mb-3">
-                                                <div class="form-check d-flex align-items-center ps-0 mb-2">
-                                                    <input class="form-check-input ms-0 mt-0" type="checkbox"
-                                                        id="room-6">
-                                                    <label class="form-check-label ms-2" for="room-6">
-                                                        Junior Suite
-                                                    </label>
-                                                </div>
-                                                <div class="form-check d-flex align-items-center ps-0 mb-2">
-                                                    <input class="form-check-input ms-0 mt-0" type="checkbox"
-                                                        id="room-7">
-                                                    <label class="form-check-label ms-2" for="room-7">
-                                                        Family Room
-                                                    </label>
-                                                </div>
-                                                <div class="form-check d-flex align-items-center ps-0 mb-2">
-                                                    <input class="form-check-input ms-0 mt-0" type="checkbox"
-                                                        id="room-8">
-                                                    <label class="form-check-label ms-2" for="room-8">
-                                                        Connecting Rooms
-                                                    </label>
-                                                </div>
-                                                <div class="form-check d-flex align-items-center ps-0 mb-2">
-                                                    <input class="form-check-input ms-0 mt-0" type="checkbox"
-                                                        id="room-9">
-                                                    <label class="form-check-label ms-2" for="room-9">
-                                                        Accessible Room
-                                                    </label>
-                                                </div>
-                                                <div class="form-check d-flex align-items-center ps-0 mb-2">
-                                                    <input class="form-check-input ms-0 mt-0" type="checkbox"
-                                                        id="room-10">
-                                                    <label class="form-check-label ms-2" for="room-10">
-                                                        Studio Room
-                                                    </label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-4 col-md-6">
-                                            <div class="mb-3">
-                                                <div class="form-check d-flex align-items-center ps-0 mb-2">
-                                                    <input class="form-check-input ms-0 mt-0" type="checkbox"
-                                                        id="room-11">
-                                                    <label class="form-check-label ms-2" for="room-11">
-                                                        Penthouse
-                                                    </label>
-                                                </div>
-                                                <div class="form-check d-flex align-items-center ps-0 mb-2">
-                                                    <input class="form-check-input ms-0 mt-0" type="checkbox"
-                                                        id="room-12">
-                                                    <label class="form-check-label ms-2" for="room-12">
-                                                        Villa
-                                                    </label>
-                                                </div>
-                                                <div class="form-check d-flex align-items-center ps-0 mb-2">
-                                                    <input class="form-check-input ms-0 mt-0" type="checkbox"
-                                                        id="room-13">
-                                                    <label class="form-check-label ms-2" for="room-13">
-                                                        Economy Room
-                                                    </label>
-                                                </div>
-                                                <div class="form-check d-flex align-items-center ps-0 mb-2">
-                                                    <input class="form-check-input ms-0 mt-0" type="checkbox"
-                                                        id="room-14">
-                                                    <label class="form-check-label ms-2" for="room-14">
-                                                        City View
-                                                    </label>
-                                                </div>
-                                                <div class="form-check d-flex align-items-center ps-0 mb-2">
-                                                    <input class="form-check-input ms-0 mt-0" type="checkbox"
-                                                        id="room-15">
-                                                    <label class="form-check-label ms-2" for="room-15">
-                                                        Ocean View
-                                                    </label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card shadow-none" id="popular_amenities">
-                                <div class="card-header">
-                                    <div class="d-flex align-items-center justify-content-between">
-                                        <h5 class="fs-18">Amenities</h5>
-                                    </div>
-                                </div>
-                                <div class="card-body pb-1">
-                                    <div class="row">
-                                        <div class="col-lg-4 col-md-6">
-                                            <div class="mb-3">
-                                                <div class="form-check d-flex align-items-center ps-0 mb-2">
-                                                    <input class="form-check-input ms-0 mt-0" type="checkbox"
-                                                        id="amenities-1">
-                                                    <label class="form-check-label ms-2" for="amenities-1">
-                                                        Free Wi-Fi
-                                                    </label>
-                                                </div>
-                                                <div class="form-check d-flex align-items-center ps-0 mb-2">
-                                                    <input class="form-check-input ms-0 mt-0" type="checkbox"
-                                                        id="amenities-2">
-                                                    <label class="form-check-label ms-2" for="amenities-2">
-                                                        Air Conditioning
-                                                    </label>
-                                                </div>
-                                                <div class="form-check d-flex align-items-center ps-0 mb-2">
-                                                    <input class="form-check-input ms-0 mt-0" type="checkbox"
-                                                        id="amenities-3">
-                                                    <label class="form-check-label ms-2" for="amenities-3">
-                                                        Heater
-                                                    </label>
-                                                </div>
-                                                <div class="form-check d-flex align-items-center ps-0 mb-2">
-                                                    <input class="form-check-input ms-0 mt-0" type="checkbox"
-                                                        id="amenities-4">
-                                                    <label class="form-check-label ms-2" for="amenities-4">
-                                                        TV (Cable/Satellite)
-                                                    </label>
-                                                </div>
-                                                <div class="form-check d-flex align-items-center ps-0 mb-2">
-                                                    <input class="form-check-input ms-0 mt-0" type="checkbox"
-                                                        id="amenities-5">
-                                                    <label class="form-check-label ms-2" for="amenities-5">
-                                                        Coffee Maker
-                                                    </label>
-                                                </div>
-                                                <div class="form-check d-flex align-items-center ps-0 mb-2">
-                                                    <input class="form-check-input ms-0 mt-0" type="checkbox"
-                                                        id="amenities-6">
-                                                    <label class="form-check-label ms-2" for="amenities-6">
-                                                        Mini Fridge
-                                                    </label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-4 col-md-6">
-                                            <div class="mb-3">
-                                                <div class="form-check d-flex align-items-center ps-0 mb-2">
-                                                    <input class="form-check-input ms-0 mt-0" type="checkbox"
-                                                        id="amenities-7">
-                                                    <label class="form-check-label ms-2" for="amenities-7">
-                                                        Safe Deposit Box
-                                                    </label>
-                                                </div>
-                                                <div class="form-check d-flex align-items-center ps-0 mb-2">
-                                                    <input class="form-check-input ms-0 mt-0" type="checkbox"
-                                                        id="amenities-8">
-                                                    <label class="form-check-label ms-2" for="amenities-8">
-                                                        Iron/Ironing Board
-                                                    </label>
-                                                </div>
-                                                <div class="form-check d-flex align-items-center ps-0 mb-2">
-                                                    <input class="form-check-input ms-0 mt-0" type="checkbox"
-                                                        id="amenities-9">
-                                                    <label class="form-check-label ms-2" for="amenities-9">
-                                                        Hair Dryer
-                                                    </label>
-                                                </div>
-                                                <div class="form-check d-flex align-items-center ps-0 mb-2">
-                                                    <input class="form-check-input ms-0 mt-0" type="checkbox"
-                                                        id="amenities-10">
-                                                    <label class="form-check-label ms-2" for="amenities-10">
-                                                        Shower
-                                                    </label>
-                                                </div>
-                                                <div class="form-check d-flex align-items-center ps-0 mb-2">
-                                                    <input class="form-check-input ms-0 mt-0" type="checkbox"
-                                                        id="amenities-11">
-                                                    <label class="form-check-label ms-2" for="amenities-11">
-                                                        Jacuzzi/Hot Tub
-                                                    </label>
-                                                </div>
-                                                <div class="form-check d-flex align-items-center ps-0 mb-2">
-                                                    <input class="form-check-input ms-0 mt-0" type="checkbox"
-                                                        id="amenities-12">
-                                                    <label class="form-check-label ms-2" for="amenities-12">
-                                                        Microwave
-                                                    </label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-4 col-md-6">
-                                            <div class="mb-3">
-                                                <div class="form-check d-flex align-items-center ps-0 mb-2">
-                                                    <input class="form-check-input ms-0 mt-0" type="checkbox"
-                                                        id="amenities-13">
-                                                    <label class="form-check-label ms-2" for="amenities-13">
-                                                        Bluetooth Speaker
-                                                    </label>
-                                                </div>
-                                                <div class="form-check d-flex align-items-center ps-0 mb-2">
-                                                    <input class="form-check-input ms-0 mt-0" type="checkbox"
-                                                        id="amenities-14">
-                                                    <label class="form-check-label ms-2" for="amenities-14">
-                                                        Sofa/Seating Area
-                                                    </label>
-                                                </div>
-                                                <div class="form-check d-flex align-items-center ps-0 mb-2">
-                                                    <input class="form-check-input ms-0 mt-0" type="checkbox"
-                                                        id="amenities-15">
-                                                    <label class="form-check-label ms-2" for="amenities-15">
-                                                        Extra Pillows and Blankets
-                                                    </label>
-                                                </div>
+                                                <label for="city" class="form-label">Other Services</label>
+                                                <input type="text" class="form-control" value=""
+                                                    placeholder="service1, service2, service3" name="other_service">
                                             </div>
                                         </div>
                                     </div>
@@ -742,54 +424,34 @@
                                     <h5 class="fs-18">FAQ</h5>
                                 </div>
                                 <div class="card-body">
-                                    <div class="card shadow-none mb-3">
-                                        <div class="card-body px-3 py-2">
-                                            <div
-                                                class="d-flex align-items-center justify-content-between flex-wrap row-gap-3">
-                                                <h6><a href="#">Does offer free cancellation for a full refund?</a>
-                                                </h6>
-                                                <div class="d-flex align-items-center">
-                                                    <a href="#" data-bs-toggle="modal" data-bs-target="#edit_faq"
-                                                        class="rounded-edit d-flex align-items-center justify-content-center me-2">
-                                                        <i class="isax isax-edit-2"></i>
-                                                    </a>
-                                                    <a href="#"
-                                                        class="trash-icon d-flex align-items-center justify-content-center">
-                                                        <i class="isax isax-trash text-danger"></i>
-                                                    </a>
-                                                </div>
+                                    <div id="faq-list">
+                                        <div class="row faq-item mb-3 align-items-center">
+                                            <div class="col-md-5">
+                                                <input type="text" name="faq_question[]" class="form-control"
+                                                    placeholder="Question *" required>
                                             </div>
-                                        </div>
-                                    </div>
-                                    <div class="card shadow-none mb-3">
-                                        <div class="card-body px-3 py-2">
-                                            <div
-                                                class="d-flex align-items-center justify-content-between flex-wrap row-gap-3">
-                                                <h6><a href="#">Is there a pool?</a></h6>
-                                                <div class="d-flex align-items-center">
-                                                    <a href="#" data-bs-toggle="modal" data-bs-target="#edit_faq"
-                                                        class="rounded-edit d-flex align-items-center justify-content-center me-2">
-                                                        <i class="isax isax-edit-2"></i>
-                                                    </a>
-                                                    <a href="#"
-                                                        class="trash-icon d-flex align-items-center justify-content-center">
-                                                        <i class="isax isax-trash text-danger"></i>
-                                                    </a>
-                                                </div>
+                                            <div class="col-md-5">
+                                                <input type="text" name="faq_answer[]" class="form-control"
+                                                    placeholder="Answer *" required>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <button type="button"
+                                                    class="trash-icon border-0 d-flex align-items-center justify-content-center remove-faq">
+                                                    <i class="isax isax-trash text-danger"></i>
+                                                </button>
                                             </div>
                                         </div>
                                     </div>
                                     <div>
-                                        <a href="#" class="btn btn-primary btn-sm add-highlight" data-bs-toggle="modal"
-                                            data-bs-target="#add_faq">
-                                            <i class="isax isax-add-circle me-1"></i>Add New
-                                        </a>
+                                        <button type="button" class="btn btn-primary btn-sm" id="add-faq">
+                                            <i class="isax isax-add-circle me-1"></i>Add FAQ
+                                        </button>
                                     </div>
                                 </div>
                             </div>
                             <div class="card shadow-none" id="gallery">
                                 <div class="card-header">
-                                    <h5 class="fs-18">Gallery</h5>
+                                    <h5 class="fs-18">Service Gallery</h5>
                                 </div>
                                 <div class="card-body">
                                     <div
@@ -798,542 +460,23 @@
                                                 class="isax isax-document-upload fs-24"></i></span>
                                         <h6 class="mb-1">Upload Gallery Images</h6>
                                         <p class="mb-0">Upload Feature Image First, Image size should below 5MB</p>
-                                        <input type="file" accept="video/image">
+                                        <input type="file" name="gallery[]" multiple accept="image/*" id="galleryInput">
                                     </div>
-                                    <div class="d-flex align-items-center">
-                                        <a href="#" class="gallery-upload-img me-2">
-                                            <img src=" {{ asset('/images/uploads/upload-01.jpg') }}" alt="Img">
-                                            <span
-                                                class="trash-icon d-flex align-items-center justify-content-center text-danger gallery-trash"><i
-                                                    class="isax isax-trash"></i></span>
-                                        </a>
-                                        <a href="#" class="gallery-upload-img me-2">
-                                            <img src=" {{ asset('/images/uploads/upload-02.jpg') }}" alt="Img">
-                                            <span
-                                                class="trash-icon d-flex align-items-center justify-content-center text-danger gallery-trash"><i
-                                                    class="isax isax-trash"></i></span>
-                                        </a>
-                                        <a href="#" class="gallery-upload-img me-2">
-                                            <img src=" {{ asset('/images/uploads/upload-03.jpg') }}" alt="Img">
-                                            <span
-                                                class="trash-icon d-flex align-items-center justify-content-center text-danger gallery-trash"><i
-                                                    class="isax isax-trash"></i></span>
-                                        </a>
-                                        <a href="#" class="gallery-upload-img me-2">
-                                            <img src=" {{ asset('/images/uploads/upload-04.jpg') }}" alt="Img">
-                                            <span
-                                                class="trash-icon d-flex align-items-center justify-content-center text-danger gallery-trash"><i
-                                                    class="isax isax-trash"></i></span>
-                                        </a>
-                                        <a href="#" class="gallery-upload-img me-2">
-                                            <img src=" {{ asset('/images/uploads/upload-05.jpg') }}" alt="Img">
-                                            <span
-                                                class="trash-icon d-flex align-items-center justify-content-center text-danger gallery-trash"><i
-                                                    class="isax isax-trash"></i></span>
-                                        </a>
-                                    </div>
+                                    <div class=" d-flex align-items-center" id="galleryPreview"></div>
                                 </div>
                             </div>
-                            <div class="card shadow-none" id="description">
+                            <div class="card shadow-none" id="service_description">
                                 <div class="card-header">
                                     <h5 class="fs-18">Description</h5>
                                 </div>
                                 <div class="card-body text-editor">
                                     <div class="snow-editor"></div>
+                                    <input type="hidden" name="description" id="description">
                                 </div>
                             </div>
                             <div class="d-flex align-items-center justify-content-center">
                                 <button type="button" class="btn btn-light me-2">Reset</button>
                                 <button type="submit" class="btn btn-primary">Add New Service</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-            <div class="tab-pane fade" id="add_room" role="tabpanel">
-                <div class="row">
-                    <div class="col-lg-3 theiaStickySidebar">
-                        <div class="card border-0">
-                            <div class="card-body">
-                                <div>
-                                    <h5 class="mb-3">Edit Room</h5>
-                                    <ul class="add-tab-list">
-                                        <li><a href="#basic_info_2" class="active">Basic Info</a></li>
-                                        <li><a href="#description_2">Description</a></li>
-                                        <li><a href="#specification">Specifications</a></li>
-                                        <li><a href="#services">Services</a></li>
-                                        <li><a href="#accssibilty">Accessibility</a></li>
-                                        <li><a href="#popular_amenities_2">Amenities</a></li>
-                                        <li><a href="#gallery_2">Gallery</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-9">
-                        <form action="https://dreamstour.dreamstechnologies.com/html/hotel-grid.html">
-                            <div class="card shadow-none" id="basic_info_2">
-                                <div class="card-header">
-                                    <div class="d-flex align-items-center justify-content-between">
-                                        <h5 class="fs-18">Basic Info</h5>
-                                    </div>
-                                </div>
-                                <div class="card-body pb-1">
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <div class="mb-3">
-                                                <label class="form-label">Room Name</label>
-                                                <input type="text" class="form-control" value="Smoking rooms">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="mb-3">
-                                                <label class="form-label">Room Type</label>
-                                                <select class="form-select select">
-                                                    <option>Select</option>
-                                                    <option selected>Queen Room</option>
-                                                    <option>Double Room</option>
-                                                    <option>Suite Room</option>
-                                                    <option>Family Room</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="mb-3">
-                                                <label class="form-label">Hotel Name</label>
-                                                <select class="form-select select">
-                                                    <option>Select</option>
-                                                    <option>Hotel Plaza Athenee</option>
-                                                    <option selected>The Luxe Haven</option>
-                                                    <option>The Urban Retreat</option>
-                                                    <option>The Grand Horizon</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card shadow-none" id="description_2">
-                                <div class="card-header">
-                                    <h5 class="fs-18">Description</h5>
-                                </div>
-                                <div class="card-body text-editor">
-                                    <div class="snow-editor"></div>
-                                </div>
-                            </div>
-                            <div class="card shadow-none" id="specification">
-                                <div class="card-header">
-                                    <div class="d-flex align-items-center justify-content-between">
-                                        <h5 class="fs-18">Specifications</h5>
-                                    </div>
-                                </div>
-                                <div class="card-body pb-1">
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="mb-3">
-                                                <label class="form-label">Maximum Occupancy</label>
-                                                <select class="form-select select">
-                                                    <option>Select</option>
-                                                    <option selected>1-2</option>
-                                                    <option>2-4</option>
-                                                    <option>4-6</option>
-                                                    <option>6-10</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="mb-3">
-                                                <label class="form-label">Room Size</label>
-                                                <input type="text" class="form-control">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="mb-3">
-                                                <label class="form-label">Sleeps</label>
-                                                <select class="form-select select">
-                                                    <option>Select</option>
-                                                    <option>1</option>
-                                                    <option selected>2</option>
-                                                    <option>3</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="mb-3">
-                                                <label class="form-label">Bed Type</label>
-                                                <select class="form-select select">
-                                                    <option>Select</option>
-                                                    <option>Single Bed</option>
-                                                    <option selected>Double Bed</option>
-                                                    <option>Queen Bed</option>
-                                                    <option>King Bed</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="mb-3">
-                                                <label class="form-label">View</label>
-                                                <select class="form-select select">
-                                                    <option>Select</option>
-                                                    <option>Ocean View</option>
-                                                    <option selected>Beachfront View</option>
-                                                    <option>Mountain View</option>
-                                                    <option>City View</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="mb-3">
-                                                <label class="form-label">Price Per Night</label>
-                                                <input type="text" class="form-control" value="$10">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card shadow-none" id="services">
-                                <div class="card-header">
-                                    <div class="d-flex align-items-center justify-content-between">
-                                        <h5 class="fs-18">Services</h5>
-                                    </div>
-                                </div>
-                                <div class="card-body pb-1">
-                                    <div class="row">
-                                        <div class="col-lg-4 col-md-6">
-                                            <div class="mb-3">
-                                                <div class="form-check d-flex align-items-center ps-0 mb-2">
-                                                    <input class="form-check-input ms-0 mt-0" type="checkbox"
-                                                        id="service-19">
-                                                    <label class="form-check-label ms-2" for="service-19">
-                                                        24-Hour Room Service
-                                                    </label>
-                                                </div>
-                                                <div class="form-check d-flex align-items-center ps-0 mb-2">
-                                                    <input class="form-check-input ms-0 mt-0" type="checkbox"
-                                                        id="service-20">
-                                                    <label class="form-check-label ms-2" for="service-20">
-                                                        In-Room Dining
-                                                    </label>
-                                                </div>
-                                                <div class="form-check d-flex align-items-center ps-0 mb-2">
-                                                    <input class="form-check-input ms-0 mt-0" type="checkbox"
-                                                        id="service-21">
-                                                    <label class="form-check-label ms-2" for="service-21">
-                                                        Concierge Services
-                                                    </label>
-                                                </div>
-                                                <div class="form-check d-flex align-items-center ps-0 mb-2">
-                                                    <input class="form-check-input ms-0 mt-0" type="checkbox"
-                                                        id="service-22">
-                                                    <label class="form-check-label ms-2" for="service-22">
-                                                        Daily Housekeeping
-                                                    </label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-4 col-md-6">
-                                            <div class="mb-3">
-                                                <div class="form-check d-flex align-items-center ps-0 mb-2">
-                                                    <input class="form-check-input ms-0 mt-0" type="checkbox"
-                                                        id="service-23">
-                                                    <label class="form-check-label ms-2" for="service-23">
-                                                        Check-In/Check-Out Assistance
-                                                    </label>
-                                                </div>
-                                                <div class="form-check d-flex align-items-center ps-0 mb-2">
-                                                    <input class="form-check-input ms-0 mt-0" type="checkbox"
-                                                        id="service-24">
-                                                    <label class="form-check-label ms-2" for="service-24">
-                                                        Free luggage deposit
-                                                    </label>
-                                                </div>
-                                                <div class="form-check d-flex align-items-center ps-0 mb-2">
-                                                    <input class="form-check-input ms-0 mt-0" type="checkbox"
-                                                        id="service-25">
-                                                    <label class="form-check-label ms-2" for="service-25">
-                                                        Laundry and Ironing Service
-                                                    </label>
-                                                </div>
-                                                <div class="form-check d-flex align-items-center ps-0 mb-2">
-                                                    <input class="form-check-input ms-0 mt-0" type="checkbox"
-                                                        id="service-26">
-                                                    <label class="form-check-label ms-2" for="service-26">
-                                                        Dry Cleaning Service
-                                                    </label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-4 col-md-6">
-                                            <div class="mb-3">
-                                                <div class="form-check d-flex align-items-center ps-0 mb-2">
-                                                    <input class="form-check-input ms-0 mt-0" type="checkbox"
-                                                        id="service-27">
-                                                    <label class="form-check-label ms-2" for="service-27">
-                                                        Valet Parking
-                                                    </label>
-                                                </div>
-                                                <div class="form-check d-flex align-items-center ps-0 mb-2">
-                                                    <input class="form-check-input ms-0 mt-0" type="checkbox"
-                                                        id="service-28">
-                                                    <label class="form-check-label ms-2" for="service-28">
-                                                        Babysitting
-                                                    </label>
-                                                </div>
-                                                <div class="form-check d-flex align-items-center ps-0 mb-2">
-                                                    <input class="form-check-input ms-0 mt-0" type="checkbox"
-                                                        id="service-29">
-                                                    <label class="form-check-label ms-2" for="service-29">
-                                                        Dry Cleaning Service
-                                                    </label>
-                                                </div>
-                                                <div class="form-check d-flex align-items-center ps-0 mb-2">
-                                                    <input class="form-check-input ms-0 mt-0" type="checkbox"
-                                                        id="service-30">
-                                                    <label class="form-check-label ms-2" for="service-30">
-                                                        Wake-Up Call Service
-                                                    </label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card shadow-none" id="accssibilty">
-                                <div class="card-header">
-                                    <div class="d-flex align-items-center justify-content-between">
-                                        <h5 class="fs-18">Accessibility</h5>
-                                    </div>
-                                </div>
-                                <div class="card-body pb-1">
-                                    <div class="row">
-                                        <div class="col-lg-4 col-md-6">
-                                            <div class="mb-3">
-                                                <div class="form-check d-flex align-items-center ps-0 mb-2">
-                                                    <input class="form-check-input ms-0 mt-0" type="checkbox"
-                                                        id="accessibility-19">
-                                                    <label class="form-check-label ms-2" for="accessibility-19">
-                                                        Wheelchair accessible
-                                                    </label>
-                                                </div>
-                                                <div class="form-check d-flex align-items-center ps-0 mb-2">
-                                                    <input class="form-check-input ms-0 mt-0" type="checkbox"
-                                                        id="accessibility-20">
-                                                    <label class="form-check-label ms-2" for="accessibility-20">
-                                                        Visual alarms in hallways
-                                                    </label>
-                                                </div>
-                                                <div class="form-check d-flex align-items-center ps-0 mb-2">
-                                                    <input class="form-check-input ms-0 mt-0" type="checkbox"
-                                                        id="accessibility-21">
-                                                    <label class="form-check-label ms-2" for="accessibility-21">
-                                                        Elevator
-                                                    </label>
-                                                </div>
-                                                <div class="form-check d-flex align-items-center ps-0 mb-2">
-                                                    <input class="form-check-input ms-0 mt-0" type="checkbox"
-                                                        id="accessibility-22">
-                                                    <label class="form-check-label ms-2" for="accessibility-22">
-                                                        Braille/raised signage
-                                                    </label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-4 col-md-6">
-                                            <div class="mb-3">
-                                                <div class="form-check d-flex align-items-center ps-0 mb-2">
-                                                    <input class="form-check-input ms-0 mt-0" type="checkbox"
-                                                        id="accessibility-23">
-                                                    <label class="form-check-label ms-2" for="accessibility-23">
-                                                        Wheelchair-accessible gym
-                                                    </label>
-                                                </div>
-                                                <div class="form-check d-flex align-items-center ps-0 mb-2">
-                                                    <input class="form-check-input ms-0 mt-0" type="checkbox"
-                                                        id="accessibility-24">
-                                                    <label class="form-check-label ms-2" for="accessibility-24">
-                                                        Wheelchair-accessible business center
-                                                    </label>
-                                                </div>
-                                                <div class="form-check d-flex align-items-center ps-0 mb-2">
-                                                    <input class="form-check-input ms-0 mt-0" type="checkbox"
-                                                        id="accessibility-25">
-                                                    <label class="form-check-label ms-2" for="accessibility-25">
-                                                        Wheelchair-accessible lounge
-                                                    </label>
-                                                </div>
-                                                <div class="form-check d-flex align-items-center ps-0 mb-2">
-                                                    <input class="form-check-input ms-0 mt-0" type="checkbox"
-                                                        id="accessibility-26">
-                                                    <label class="form-check-label ms-2" for="accessibility-26">
-                                                        Wheelchair-accessible concierge desk
-                                                    </label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-4 col-md-6">
-                                            <div class="mb-3">
-                                                <div class="form-check d-flex align-items-center ps-0 mb-2">
-                                                    <input class="form-check-input ms-0 mt-0" type="checkbox"
-                                                        id="accessibility-27">
-                                                    <label class="form-check-label ms-2" for="accessibility-27">
-                                                        Step-free or ramped access
-                                                    </label>
-                                                </div>
-                                                <div class="form-check d-flex align-items-center ps-0 mb-2">
-                                                    <input class="form-check-input ms-0 mt-0" type="checkbox"
-                                                        id="accessibility-28">
-                                                    <label class="form-check-label ms-2" for="accessibility-28">
-                                                        Automatic doors
-                                                    </label>
-                                                </div>
-                                                <div class="form-check d-flex align-items-center ps-0 mb-2">
-                                                    <input class="form-check-input ms-0 mt-0" type="checkbox"
-                                                        id="accessibility-29">
-                                                    <label class="form-check-label ms-2" for="accessibility-29">
-                                                        Grab bars in the bathroom
-                                                    </label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card shadow-none" id="popular_amenities_2">
-                                <div class="card-header">
-                                    <div class="d-flex align-items-center justify-content-between">
-                                        <h5 class="fs-18">Amenities</h5>
-                                    </div>
-                                </div>
-                                <div class="card-body pb-1">
-                                    <div class="row">
-                                        <div class="col-lg-4 col-md-6">
-                                            <div class="mb-3">
-                                                <div class="form-check d-flex align-items-center ps-0 mb-2">
-                                                    <input class="form-check-input ms-0 mt-0" type="checkbox"
-                                                        id="amenities-16">
-                                                    <label class="form-check-label ms-2" for="amenities-16">
-                                                        Free Wi-Fi
-                                                    </label>
-                                                </div>
-                                                <div class="form-check d-flex align-items-center ps-0 mb-2">
-                                                    <input class="form-check-input ms-0 mt-0" type="checkbox"
-                                                        id="amenities-17">
-                                                    <label class="form-check-label ms-2" for="amenities-17">
-                                                        Air Conditioning
-                                                    </label>
-                                                </div>
-                                                <div class="form-check d-flex align-items-center ps-0 mb-2">
-                                                    <input class="form-check-input ms-0 mt-0" type="checkbox"
-                                                        id="amenities-18">
-                                                    <label class="form-check-label ms-2" for="amenities-18">
-                                                        Heater
-                                                    </label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-4 col-md-6">
-                                            <div class="mb-3">
-                                                <div class="form-check d-flex align-items-center ps-0 mb-2">
-                                                    <input class="form-check-input ms-0 mt-0" type="checkbox"
-                                                        id="amenities-19">
-                                                    <label class="form-check-label ms-2" for="amenities-19">
-                                                        Safe Deposit Box
-                                                    </label>
-                                                </div>
-                                                <div class="form-check d-flex align-items-center ps-0 mb-2">
-                                                    <input class="form-check-input ms-0 mt-0" type="checkbox"
-                                                        id="amenities-20">
-                                                    <label class="form-check-label ms-2" for="amenities-20">
-                                                        Iron/Ironing Board
-                                                    </label>
-                                                </div>
-                                                <div class="form-check d-flex align-items-center ps-0 mb-2">
-                                                    <input class="form-check-input ms-0 mt-0" type="checkbox"
-                                                        id="amenities-21">
-                                                    <label class="form-check-label ms-2" for="amenities-21">
-                                                        Hair Dryer
-                                                    </label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-4 col-md-6">
-                                            <div class="mb-3">
-                                                <div class="form-check d-flex align-items-center ps-0 mb-2">
-                                                    <input class="form-check-input ms-0 mt-0" type="checkbox"
-                                                        id="amenities-22">
-                                                    <label class="form-check-label ms-2" for="amenities-22">
-                                                        Bluetooth Speaker
-                                                    </label>
-                                                </div>
-                                                <div class="form-check d-flex align-items-center ps-0 mb-2">
-                                                    <input class="form-check-input ms-0 mt-0" type="checkbox"
-                                                        id="amenities-23">
-                                                    <label class="form-check-label ms-2" for="amenities-23">
-                                                        Sofa/Seating Area
-                                                    </label>
-                                                </div>
-                                                <div class="form-check d-flex align-items-center ps-0 mb-2">
-                                                    <input class="form-check-input ms-0 mt-0" type="checkbox"
-                                                        id="amenities-24">
-                                                    <label class="form-check-label ms-2" for="amenities-24">
-                                                        Extra Pillows and Blankets
-                                                    </label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card shadow-none" id="gallery_2">
-                                <div class="card-header">
-                                    <h5 class="fs-18">Gallery</h5>
-                                </div>
-                                <div class="card-body">
-                                    <div
-                                        class="file-upload drag-file w-100 d-flex align-items-center justify-content-center flex-column mb-2">
-                                        <span class="upload-img d-block mb-2"><i
-                                                class="isax isax-document-upload fs-24"></i></span>
-                                        <h6 class="mb-1">Upload Gallery Images</h6>
-                                        <p class="mb-0">Upload Feature Image First, Image size should below 5MB</p>
-                                        <input type="file" accept="video/image">
-                                    </div>
-                                    <div class="d-flex align-items-center">
-                                        <a href="#" class="gallery-upload-img me-2">
-                                            <img src=" {{ asset('/images/uploads/upload-01.jpg') }}" alt="Img">
-                                            <span
-                                                class="trash-icon d-flex align-items-center justify-content-center text-danger gallery-trash"><i
-                                                    class="isax isax-trash"></i></span>
-                                        </a>
-                                        <a href="#" class="gallery-upload-img me-2">
-                                            <img src=" {{ asset('/images/uploads/upload-02.jpg') }}" alt="Img">
-                                            <span
-                                                class="trash-icon d-flex align-items-center justify-content-center text-danger gallery-trash"><i
-                                                    class="isax isax-trash"></i></span>
-                                        </a>
-                                        <a href="#" class="gallery-upload-img me-2">
-                                            <img src=" {{ asset('/images/uploads/upload-03.jpg') }}" alt="Img">
-                                            <span
-                                                class="trash-icon d-flex align-items-center justify-content-center text-danger gallery-trash"><i
-                                                    class="isax isax-trash"></i></span>
-                                        </a>
-                                        <a href="#" class="gallery-upload-img me-2">
-                                            <img src=" {{ asset('/images/uploads/upload-04.jpg') }}" alt="Img">
-                                            <span
-                                                class="trash-icon d-flex align-items-center justify-content-center text-danger gallery-trash"><i
-                                                    class="isax isax-trash"></i></span>
-                                        </a>
-                                        <a href="#" class="gallery-upload-img me-2">
-                                            <img src=" {{ asset('/images/uploads/upload-05.jpg') }}" alt="Img">
-                                            <span
-                                                class="trash-icon d-flex align-items-center justify-content-center text-danger gallery-trash"><i
-                                                    class="isax isax-trash"></i></span>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="d-flex align-items-center justify-content-center">
-                                <button type="button" class="btn btn-light me-2">Reset</button>
-                                <button type="submit" class="btn btn-primary">Add New Room</button>
                             </div>
                         </form>
                     </div>
@@ -1352,7 +495,7 @@
                 <h5>Add New FAQ</h5>
                 <button data-bs-dismiss="modal" aria-label="close" class="btn-close"></button>
             </div>
-            <form action="https://dreamstour.dreamstechnologies.com/html/add-hotel.html">
+            <form action="#">
                 <div class="modal-body">
                     <div class="mb-3">
                         <label class="form-label">Question <span class="text-danger"> *</span></label>
@@ -1383,14 +526,14 @@
                 <h5>Edit FAQ</h5>
                 <button data-bs-dismiss="modal" aria-label="close" class="btn-close"></button>
             </div>
-            <form action="https://dreamstour.dreamstechnologies.com/html/add-hotel.html">
+            <form action="#">
                 <div class="modal-body">
                     <div class="mb-3">
-                        <label class="form-label">Question <span class="text-danger"> *</span></label>
+                        <label for="question" class="form-label">Question <span class="text-danger"> *</span></label>
                         <input type="text" class="form-control" value="Does offer free cancellation for a full refund?">
                     </div>
                     <div>
-                        <label class="form-label">Answer <span class="text-danger"> *</span></label>
+                        <label for="answer" class="form-label">Answer <span class="text-danger"> *</span></label>
                         <input type="text" class="form-control" value="yes">
                     </div>
                 </div>

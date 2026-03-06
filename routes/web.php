@@ -17,5 +17,8 @@ Route::prefix('admin')->name('admin.')->group(
     function () {
         Route::get('/service-list', [AddServiceListConroller::class, 'index'])->name('service.list');
         Route::get('/service-list/create', [AddServiceListConroller::class, 'create'])->name('service.list.create');
+        Route::post('/service-list/create', [AddServiceListConroller::class, 'store'])->name('service.list.store');
+        Route::get('/services/{id}/edit', [AddServiceListConroller::class, 'edit'])->name('service.list.edit');
+        Route::put('/services/{id}', [AddServiceListConroller::class, 'update'])->name('service.list.update');
     }
 );
