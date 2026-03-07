@@ -13,32 +13,30 @@ return new class extends Migration
     {
         Schema::create('services', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('partner_id');
             $table->string('service_title');
             $table->string('service_category');
             $table->string('price_type');
             $table->decimal('base_price', 10, 2)->nullable();
             $table->decimal('discount_price', 10, 2)->nullable();
-
             $table->json('available_days')->nullable();
-
             $table->string('location_type');
             $table->string('city');
             $table->string('state');
             $table->string('zip_code');
             $table->text('address');
-
             $table->json('highlight')->nullable();
             $table->json('service')->nullable();
-
             $table->text('other_service')->nullable();
-
             $table->json('faq')->nullable();
-
             $table->longText('description')->nullable();
-
             $table->json('gallery')->nullable();
-
             $table->timestamps();
+
+            $table->foreign('partner_id')
+                ->references('id')
+                ->on('service_partner')
+                ->cascadeOnDelete();
         });
     }
 
@@ -47,6 +45,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('create_services');
+        Schema::dropIfExists('services');
     }
 };

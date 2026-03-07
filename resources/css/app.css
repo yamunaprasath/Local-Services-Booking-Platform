@@ -3,6 +3,11 @@
 @import "./iconsax.css";
 @import "@tabler/icons-webfont/dist/tabler-icons.min.css";
 @import "flatpickr/dist/flatpickr.min.css";
+@import "@fortawesome/fontawesome-free/css/all.min.css";
+@import "../css/meanmenu.css";
+@import "../css/iconsax.css";
+@import "select2/dist/css/select2.min.css";
+@import "quill/dist/quill.snow.css";
 
 /* Highest priority */
 @import "./style.css";
@@ -33,4 +38,19 @@ section.hero-sec-eight::before {
 
 html {
     scroll-padding-top: 80px;
+}
+
+.place-item .text-line {
+    text-decoration: line-through;
+}
+
+.service-img {
+    width: 350px;
+    height: 200px;
+    object-fit: cover;
+}
+
+.form-control.is-invalid {
+    position: relative;
+    z-index: 9;
 }

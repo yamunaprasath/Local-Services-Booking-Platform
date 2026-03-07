@@ -1,9 +1,9 @@
 @extends('index')
 
 @section('title', 'Dashboard')
-@section('breadscrumb', 'Service Listing')
+@section('breadcrumb', 'Service Listing')
 <x-breadcrumb />
-
+@section('content')
 <!-- Page Wrapper -->
 <div class="content">
     <div class="container">
@@ -31,18 +31,8 @@
                         </div>
                     </div>
                     <div class="col-lg-9">
-                        @if(session('success'))
-                        <div class="alert alert-success alert-dismissible fade show">
-                            {{ session('success') }}
-                            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-                        </div>
-                        @endif
-                        @if(session('error'))
-                        <div class="alert alert-danger">
-                            {{ session('error') }}
-                        </div>
-                        @endif
-                        <form action="{{ route('admin.service.list.store') }}" method="POST"
+                        <x-message />
+                        <form action="{{ route('partner.service.list.store') }}" method="POST"
                             enctype="multipart/form-data">
                             @csrf
                             <div class="card shadow-none" id="basic_info">
@@ -548,3 +538,4 @@
     </div>
 </div>
 <!-- Faq Modal -->
+@endsection

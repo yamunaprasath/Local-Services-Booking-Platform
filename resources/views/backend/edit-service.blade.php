@@ -1,9 +1,9 @@
 @extends('index')
 
 @section('title', 'Dashboard')
-@section('breadscrumb', 'Service Listing')
+@section('breadcrumb', 'Service Listing')
 <x-breadcrumb />
-
+@section('content')
 <!-- Page Wrapper -->
 <div class="content">
     <div class="container">
@@ -31,18 +31,8 @@
                         </div>
                     </div>
                     <div class="col-lg-9">
-                        @if(session('success'))
-                        <div class="alert alert-success alert-dismissible fade show">
-                            {{ session('success') }}
-                            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-                        </div>
-                        @endif
-                        @if(session('error'))
-                        <div class="alert alert-danger">
-                            {{ session('error') }}
-                        </div>
-                        @endif
-                        <form action="{{ route('admin.service.list.store') }}" method="POST"
+                        <x-message />
+                        <form action="{{ route('partner.service.list.update', $service->id) }}" method="POST"
                             enctype="multipart/form-data">
                             @csrf
                             @method('PUT')
@@ -508,7 +498,8 @@
                                         <div class="col-xl-6 col-md-6 pt-4">
                                             <div class="mb-3">
                                                 <label for="city" class="form-label">Other Services</label>
-                                                <input type="text" class="form-control" value=""
+                                                <input type="text" class="form-control"
+                                                    value="{{ $service->other_service }}"
                                                     placeholder="service1, service2, service3" name="other_service">
                                             </div>
                                         </div>
@@ -521,14 +512,15 @@
                                 </div>
                                 <div class="card-body">
                                     <div id="faq-list">
+                                        @foreach($service->faq as $faq)
                                         <div class="row faq-item mb-3 align-items-center">
                                             <div class="col-md-5">
                                                 <input type="text" name="faq_question[]" class="form-control"
-                                                    placeholder="Question *" required>
+                                                    placeholder="Question *" value="{{ $faq['question'] }}" required>
                                             </div>
                                             <div class="col-md-5">
                                                 <input type="text" name="faq_answer[]" class="form-control"
-                                                    placeholder="Answer *" required>
+                                                    placeholder="Answer *" value="{{ $faq['answer'] }}" required>
                                             </div>
                                             <div class="col-md-2">
                                                 <button type="button"
@@ -537,11 +529,12 @@
                                                 </button>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div>
-                                        <button type="button" class="btn btn-primary btn-sm" id="add-faq">
-                                            <i class="isax isax-add-circle me-1"></i>Add FAQ
-                                        </button>
+                                        @endforeach
+                                        <div>
+                                            <button type="button" class="btn btn-primary btn-sm" id="add-faq">
+                                                <i class="isax isax-add-circle me-1"></i>Add FAQ
+                                            </button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -558,7 +551,24 @@
                                         <p class="mb-0">Upload Feature Image First, Image size should below 5MB</p>
                                         <input type="file" name="gallery[]" multiple accept="image/*" id="galleryInput">
                                     </div>
-                                    <div class=" d-flex align-items-center" id="galleryPreview"></div>
+
+                                    {{-- Hidden inputs to track existing images --}}
+                                    <div id="existingImagesInputs">
+                                        @foreach($service->gallery as $img)
+                                        <input type="hidden" name="existing_gallery[]" value="{{ $img }}">
+                                        @endforeach
+                                    </div>
+                                    <div class="d-flex align-items-center flex-wrap" id="galleryPreview">
+                                        @foreach($service->gallery as $img)
+                                        <div class="gallery-upload-img me-2" data-existing="{{ $img }}">
+                                            <img src="{{ asset('storage/'.$img) }}" alt="Img">
+                                            <span
+                                                class="trash-icon d-flex align-items-center justify-content-center text-danger gallery-trash">
+                                                <i class="isax isax-trash"></i>
+                                            </span>
+                                        </div>
+                                        @endforeach
+                                    </div>
                                 </div>
                             </div>
                             <div class="card shadow-none" id="service_description">
@@ -567,12 +577,13 @@
                                 </div>
                                 <div class="card-body text-editor">
                                     <div class="snow-editor"></div>
-                                    <input type="hidden" name="description" id="description">
+                                    <input type="hidden" name="description" id="description"
+                                        value="{{ $service->description }}">
                                 </div>
                             </div>
                             <div class="d-flex align-items-center justify-content-center">
                                 <button type="button" class="btn btn-light me-2">Reset</button>
-                                <button type="submit" class="btn btn-primary">Add New Service</button>
+                                <button type="submit" class="btn btn-primary">Update Service</button>
                             </div>
                         </form>
                     </div>
@@ -644,3 +655,4 @@
     </div>
 </div>
 <!-- Faq Modal -->
+@endsection

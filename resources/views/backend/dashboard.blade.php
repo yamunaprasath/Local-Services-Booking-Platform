@@ -1,8 +1,9 @@
 @extends('index')
 
 @section('title', 'Dashboard')
-@section('breadscrumb', 'Dashboard')
+@section('breadcrumb', 'Dashboard')
 <x-breadcrumb />
+@section('content')
 <div class="content">
     <div class="container">
 
@@ -42,7 +43,7 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="{{ route('admin.service.list') }}" class="d-flex align-items-center">
+                                <a href="{{ route('partner.service.list') }}" class="d-flex align-items-center">
                                     <i class="isax isax-menu-14 me-2"></i> Add Service
                                 </a>
                             </li>
@@ -91,6 +92,7 @@
             <!-- /Sidebar -->
 
             <div class="col-xl-9 col-lg-8">
+                <x-message />
                 <div class="row">
                     <div class="col-xl-3 col-sm-6 d-flex">
                         <div class="card shadow-none flex-fill">
@@ -392,7 +394,7 @@
                                         <td>
                                             <div class="d-flex align-items-center">
                                                 <a href="hotel-details.html" class="avatar avatar-lg"><img
-                                                        src="assets/img/hotels/hotel-22.jpg"
+                                                        src="{{ asset('images/hotels/hotel-02.jpg') }}"
                                                         class="img-fluid rounded-circle" alt="img"></a>
                                                 <div class="ms-2">
                                                     <p class="text-dark mb-0 fw-medium fs-14"><a
@@ -1106,3 +1108,5 @@
     </div>
 </div>
 <!-- /Booking Cancel -->
+
+@endsection

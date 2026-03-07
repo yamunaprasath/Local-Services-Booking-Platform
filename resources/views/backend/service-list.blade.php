@@ -1,9 +1,9 @@
 @extends('index')
 
 @section('title', 'Dashboard')
-@section('breadscrumb', 'Service Listing')
+@section('breadcrumb', 'Service Listing')
 <x-breadcrumb />
-
+@section('content')
 <!-- Page Wrapper -->
 <div class="content">
     <div class="container">
@@ -142,6 +142,7 @@
             <!-- /Sidebar -->
 
             <div class="col-xl-9 col-lg-8">
+                <x-message />
                 <div class="d-flex align-items-center justify-content-between flex-wrap row-gap-3">
                     <div class="dropdown mb-4">
                         <a href="#"
@@ -166,10 +167,10 @@
                                 class="card-body d-flex align-items-center justify-content-between flex-wrap row-gap-2">
                                 <div>
                                     <h5 class="mb-1">Listings</h5>
-                                    <p>No of Listings : 200</p>
+                                    <p>No of Listings : {{ $services->count() }}</p>
                                 </div>
                                 <div>
-                                    <a href="{{ route('admin.service.list.create') }}"
+                                    <a href="{{ route('partner.service.list.create') }}"
                                         class="btn btn-primary d-inline-flex align-items-center me-0"><i
                                             class="isax isax-add me-1 fs-16"></i>Add Listing</a>
                                 </div>
@@ -180,12 +181,12 @@
                             <div class="col-xl-4 col-md-6 d-flex">
                                 <div class="place-item mb-4 flex-fill">
                                     <div class="place-img">
-                                        <a href="#">
-                                            <img src="{{ asset('images/service/' . $service->gallery[0]) }}"
-                                                class="img-fluid" alt="img">
+                                        <a href="{{ route('partner.service.list.edit', $service->id) }}">
+                                            <img src="{{ asset('storage/' . ($service->gallery[0] ?? 'services/default.jpg')) }}"
+                                                alt="" class="img-fluid service-img" alt="img">
                                         </a>
                                         <div class="edit-delete-item d-flex align-items-center">
-                                            <a href="{{ route('admin.service.list.edit', $service->id) }}"
+                                            <a href="{{ route('partner.service.list.edit', $service->id) }}"
                                                 class="me-2 d-inline-flex align-items-center justify-content-center"><i
                                                     class="isax isax-edit"></i></a>
                                             <a href="#" class="d-inline-flex align-items-center justify-content-center"
@@ -193,8 +194,9 @@
                                                     class="isax isax-trash"></i></a>
                                         </div>
                                     </div>
-                                    <div class="place-content activity-content">
-                                        <h5 class="mb-1 text-truncate"><a href="#">{{ $service->service_title }}
+                                    <div class="place-content">
+                                        <h5 class="mb-1 text-truncate"><a
+                                                href="{{ route('partner.service.list.edit', $service->id) }}">{{ $service->service_title }}
                                             </a></h5>
                                         <p class="d-flex align-items-center mb-2"><i
                                                 class="isax isax-location5 me-2"></i>{{ $service->city }},
@@ -263,6 +265,7 @@
 <!-- Active Modal -->
 
 <!-- Delete Modal -->
+@foreach($services as $service)
 <div class="modal fade" id="delete-list" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-sm">
         <div class="modal-content">
@@ -271,12 +274,20 @@
                     <h5 class="mb-3">Delete Listing</h5>
                     <p class="mb-3">Are you sure you want to delete this listing?</p>
                     <div class="d-flex align-items-center justify-content-center">
-                        <a href="#" class="btn btn-light me-2">No</a>
-                        <a href="agent-listings.html" class="btn btn-primary">Yes, Delete</a>
+                        <button type="button" class="btn btn-light me-2" data-bs-dismiss="modal">No</button>
+
+                        <form action="{{ route('partner.service.list.destroy', $service->id) }}" method="POST"
+                            class="m-0">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-primary">Yes, Delete</button>
+                        </form>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+@endforeach
 <!--  Delete Modal -->
+@endsection

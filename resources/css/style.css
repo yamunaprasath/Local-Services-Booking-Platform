@@ -11618,11 +11618,9 @@ header .main-menu-wrapper .main-nav > li:last-child {
 @media (min-width: 992px) {
     header .main-menu-wrapper .main-nav > li > ul {
         background-color: #fff;
-        border-radius: 5px;
         box-shadow: 0px 4px 24px 0px rgba(194, 194, 194, 0.25);
         display: block;
         font-size: 14px;
-        left: 0;
         margin: 0;
         min-width: 200px;
         opacity: 0;
@@ -11636,7 +11634,7 @@ header .main-menu-wrapper .main-nav > li:last-child {
         top: 100%;
         visibility: hidden;
         z-index: 1000;
-        left: 20%;
+        left: 30%;
         border-radius: 0 0 10px 10px;
     }
 }
@@ -15986,7 +15984,7 @@ footer.footer-eleven .footer-bottom a:hover {
   32.breadcrumb
 ============================*/
 .breadcrumb-bar {
-    padding: 150px 0 40px;
+    padding: 190px 0 40px;
     position: relative;
     z-index: 1;
 }
@@ -16072,6 +16070,7 @@ footer.footer-eleven .footer-bottom a:hover {
     height: 100%;
     background: url("/public/images/bg/breadcrumb-07.png") no-repeat;
     background-position: center bottom;
+    z-index: -1;
 }
 
 .breadcrumb-bg-05 {
@@ -19666,7 +19665,7 @@ footer.footer-eleven .footer-bottom a:hover {
 ============================*/
 .hero-sec-eight {
     position: relative;
-    padding: 40px 0 40px;
+    padding: 40px 0 15vh;
     /* background-image: url(/public/images/banner/banner-05.jpg); */
     /* background-image: url(/public/images/banner/bg-fill.png); */
     background-color: #cf3425;
@@ -19713,7 +19712,7 @@ footer.footer-eleven .footer-bottom a:hover {
     text-transform: uppercase;
     z-index: -2;
     position: absolute;
-    top: 150px;
+    top: 190px;
     left: 50%;
     transform: translateX(-50%);
 }

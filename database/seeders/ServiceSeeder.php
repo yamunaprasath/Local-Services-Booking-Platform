@@ -16,351 +16,241 @@ class ServiceSeeder extends Seeder
         DB::table('services')->insert([
 
             [
+                'id' => 1,
+                'partner_id' => 1,
                 'service_title' => 'Math Home Tuition',
                 'service_category' => 'Tutor Services',
                 'price_type' => 'Fixed',
                 'base_price' => 500,
                 'discount_price' => 450,
-                'available_days' => json_encode(['Monday', 'Tuesday', 'Wednesday']),
+                'available_days' => '["monday","tuesday","wednesday"]',
                 'location_type' => 'On Site',
                 'city' => 'Chennai',
                 'state' => 'Tamil Nadu',
                 'zip_code' => '600001',
                 'address' => 'Anna Nagar',
-                'highlight' => json_encode(['On time finish', 'Experienced tutors']),
-                'service' => json_encode(['24-Hour Room Service', 'Laundry and Ironing Service']),
+                'highlight' => '["On time finish","Experienced tutors"]',
+                'service' => '["24-Hour Room Service","In-Room Dining","Concierge Services","Daily Housekeeping","Front Desk Services","On-Site Restaurants","Check-In\/Check-Out Assistance","Free luggage deposit","Laundry and Ironing Service"]',
                 'other_service' => 'Online Support',
-                'faq' => json_encode([
-                    [
-                        'question' => 'What is the duration of the service?',
-                        'answer' => 'The service usually takes around 2 hours.'
-                    ],
-                    [
-                        'question' => 'Do you provide online support?',
-                        'answer' => 'Yes, we provide both online and onsite support.'
-                    ],
-                    [
-                        'question' => 'Can I reschedule the service?',
-                        'answer' => 'Yes, you can reschedule 24 hours before the appointment.'
-                    ]
-                ]),
-                'description' => 'Professional math tutoring service.',
-                'gallery' => json_encode(['g1.png', 'g2.png', 'g3.png']),
+                'faq' => '[{"question":"What is the duration of the service?","answer":"The service usually takes around 2 hours."},{"question":"Do you provide online support?","answer":"Yes, we provide both online and onsite support."},{"question":"Can I reschedule the service?","answer":"Yes, you can reschedule 24 hours before the appointment."}]',
+                'description' => '<p>Professional math tutoring service.</p>',
+                'gallery' => '["services/ar3DyYzBfW7cvz4Ax9Bfb7Su6PUsZvzIKlhkYUYJ.webp"]',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
 
             [
+                'id' => 2,
+                'partner_id' => 1,
                 'service_title' => 'English Speaking Class',
                 'service_category' => 'Tutor Services',
                 'price_type' => 'Hourly',
                 'base_price' => 300,
                 'discount_price' => 250,
-                'available_days' => json_encode(['Monday', 'Wednesday', 'Friday']),
+                'available_days' => '["monday","wednesday","friday"]',
                 'location_type' => 'Online',
                 'city' => 'Chennai',
                 'state' => 'Tamil Nadu',
                 'zip_code' => '600002',
                 'address' => 'Velachery',
-                'highlight' => json_encode(['Flexible time', 'Beginner friendly']),
-                'service' => json_encode(['Translator Service']),
+                'highlight' => '["Flexible time","Beginner friendly"]',
+                'service' => '["Translator Service"]',
                 'other_service' => 'Weekend batch',
-                'faq' => json_encode([
-                    [
-                        'question' => 'What is the duration of the service?',
-                        'answer' => 'The service usually takes around 2 hours.'
-                    ],
-                    [
-                        'question' => 'Do you provide online support?',
-                        'answer' => 'Yes, we provide both online and onsite support.'
-                    ],
-                    [
-                        'question' => 'Can I reschedule the service?',
-                        'answer' => 'Yes, you can reschedule 24 hours before the appointment.'
-                    ]
-                ]),
-                'description' => 'Improve English communication skills.',
-                'gallery' => json_encode(['g1.png', 'g2.png', 'g3.png']),
+                'faq' => '[{"question":"What is the duration of the service?","answer":"The service usually takes around 2 hours."},{"question":"Do you provide online support?","answer":"Yes, we provide both online and onsite support."},{"question":"Can I reschedule the service?","answer":"Yes, you can reschedule 24 hours before the appointment."}]',
+                'description' => '<p>Improve English communication skills.</p>',
+                'gallery' => '["services/hettRDubJwEhHnOv7afdIUKx8BGAfCHzFfRCXOHR.jpg"]',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
 
             [
+                'id' => 3,
+                'partner_id' => 1,
                 'service_title' => 'Yoga Trainer',
-                'service_category' => 'Fitness',
-                'price_type' => 'Monthly',
+                'service_category' => 'Cleaning Services',
+                'price_type' => 'Fixed',
                 'base_price' => 2000,
                 'discount_price' => 1800,
-                'available_days' => json_encode(['Tuesday', 'Thursday', 'Saturday']),
+                'available_days' => '["tuesday","thursday","saturday"]',
                 'location_type' => 'On Site',
                 'city' => 'Madurai',
                 'state' => 'Tamil Nadu',
                 'zip_code' => '625001',
                 'address' => 'KK Nagar',
-                'highlight' => json_encode(['Certified trainer', 'Personal training']),
-                'service' => json_encode(['Hair and Beauty Service']),
+                'highlight' => '["Certified trainer","Personal training"]',
+                'service' => '["Hair and Beauty Service"]',
                 'other_service' => 'Diet advice',
-                'faq' => json_encode([
-                    [
-                        'question' => 'What is the duration of the service?',
-                        'answer' => 'The service usually takes around 2 hours.'
-                    ],
-                    [
-                        'question' => 'Do you provide online support?',
-                        'answer' => 'Yes, we provide both online and onsite support.'
-                    ],
-                    [
-                        'question' => 'Can I reschedule the service?',
-                        'answer' => 'Yes, you can reschedule 24 hours before the appointment.'
-                    ]
-                ]),
-                'description' => 'Daily yoga sessions for health.',
-                'gallery' => json_encode(['g1.png', 'g2.png', 'g3.png']),
+                'faq' => '[{"question":"What is the duration of the service?","answer":"The service usually takes around 2 hours."},{"question":"Do you provide online support?","answer":"Yes, we provide both online and onsite support."},{"question":"Can I reschedule the service?","answer":"Yes, you can reschedule 24 hours before the appointment."}]',
+                'description' => '<p>Daily yoga sessions for health.</p>',
+                'gallery' => '["services/i8bhNhKCkwNKdIuQrUioysjB06DmItodZTBpwIvp.webp"]',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
 
             [
+                'id' => 4,
+                'partner_id' => 1,
                 'service_title' => 'Home Cleaning',
-                'service_category' => 'Cleaning',
+                'service_category' => 'Cleaning Services',
                 'price_type' => 'Fixed',
                 'base_price' => 1000,
                 'discount_price' => 850,
-                'available_days' => json_encode(['Monday', 'Saturday']),
+                'available_days' => '["monday","saturday"]',
                 'location_type' => 'On Site',
                 'city' => 'Coimbatore',
                 'state' => 'Tamil Nadu',
                 'zip_code' => '641001',
                 'address' => 'Gandhipuram',
-                'highlight' => json_encode(['Professional staff', 'Quick service']),
-                'service' => json_encode(['Daily Housekeeping']),
+                'highlight' => '["Professional staff","Quick service"]',
+                'service' => null,
                 'other_service' => 'Deep cleaning',
-                'faq' => json_encode([
-                    [
-                        'question' => 'What is the duration of the service?',
-                        'answer' => 'The service usually takes around 2 hours.'
-                    ],
-                    [
-                        'question' => 'Do you provide online support?',
-                        'answer' => 'Yes, we provide both online and onsite support.'
-                    ],
-                    [
-                        'question' => 'Can I reschedule the service?',
-                        'answer' => 'Yes, you can reschedule 24 hours before the appointment.'
-                    ]
-                ]),
-                'description' => 'Complete house cleaning service.',
-                'gallery' => json_encode(['g1.png', 'g2.png', 'g3.png']),
+                'faq' => '[{"question":"What is the duration of the service?","answer":"The service usually takes around 2 hours."},{"question":"Do you provide online support?","answer":"Yes, we provide both online and onsite support."},{"question":"Can I reschedule the service?","answer":"Yes, you can reschedule 24 hours before the appointment."}]',
+                'description' => '<p>Complete house cleaning service.</p>',
+                'gallery' => '["services/NQk8kDNLcdEMGS5Pv7phHvhbT7ngxQwq6Ng33LEw.jpg"]',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
 
             [
+                'id' => 5,
+                'partner_id' => 1,
                 'service_title' => 'Computer Training',
-                'service_category' => 'IT Training',
+                'service_category' => 'Cleaning Services',
                 'price_type' => 'Fixed',
                 'base_price' => 3000,
                 'discount_price' => 2500,
-                'available_days' => json_encode(['Monday', 'Tuesday', 'Wednesday', 'Thursday']),
+                'available_days' => '["monday","tuesday","wednesday","thursday"]',
                 'location_type' => 'Online',
                 'city' => 'Trichy',
                 'state' => 'Tamil Nadu',
                 'zip_code' => '620001',
                 'address' => 'Srirangam',
-                'highlight' => json_encode(['Project training', 'Job ready']),
-                'service' => json_encode(['Free luggage deposit']),
+                'highlight' => '["Project training","Job ready"]',
+                'service' => null,
                 'other_service' => 'Internship',
-                'faq' => json_encode([
-                    [
-                        'question' => 'What is the duration of the service?',
-                        'answer' => 'The service usually takes around 2 hours.'
-                    ],
-                    [
-                        'question' => 'Do you provide online support?',
-                        'answer' => 'Yes, we provide both online and onsite support.'
-                    ],
-                    [
-                        'question' => 'Can I reschedule the service?',
-                        'answer' => 'Yes, you can reschedule 24 hours before the appointment.'
-                    ]
-                ]),
-                'description' => 'Learn basic computer skills.',
-                'gallery' => json_encode(['g1.png', 'g2.png', 'g3.png']),
+                'faq' => '[{"question":"What is the duration of the service?","answer":"The service usually takes around 2 hours."},{"question":"Do you provide online support?","answer":"Yes, we provide both online and onsite support."},{"question":"Can I reschedule the service?","answer":"Yes, you can reschedule 24 hours before the appointment."}]',
+                'description' => '<p>Learn basic computer skills.</p>',
+                'gallery' => '["services/s2L6cpxJ0n3sp5eeHxuWwt31XXUbfVYgKr107wwc.jpg"]',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
 
             [
+                'id' => 6,
+                'partner_id' => 1,
                 'service_title' => 'Web Development Course',
-                'service_category' => 'IT Training',
+                'service_category' => 'Cleaning Services',
                 'price_type' => 'Fixed',
                 'base_price' => 8000,
                 'discount_price' => 7000,
-                'available_days' => json_encode(['Monday', 'Wednesday', 'Friday']),
+                'available_days' => '["monday","wednesday","friday"]',
                 'location_type' => 'Online',
                 'city' => 'Chennai',
                 'state' => 'Tamil Nadu',
                 'zip_code' => '600003',
                 'address' => 'Tambaram',
-                'highlight' => json_encode(['Real projects', 'Placement help']),
-                'service' => json_encode(['Dry Cleaning Service']),
+                'highlight' => '["Real projects","Placement help"]',
+                'service' => '["Dry Cleaning Service","Dry Cleaning Service"]',
                 'other_service' => 'Portfolio building',
-                'faq' => json_encode([
-                    [
-                        'question' => 'What is the duration of the service?',
-                        'answer' => 'The service usually takes around 2 hours.'
-                    ],
-                    [
-                        'question' => 'Do you provide online support?',
-                        'answer' => 'Yes, we provide both online and onsite support.'
-                    ],
-                    [
-                        'question' => 'Can I reschedule the service?',
-                        'answer' => 'Yes, you can reschedule 24 hours before the appointment.'
-                    ]
-                ]),
-                'description' => 'Full stack web development training.',
-                'gallery' => json_encode(['g1.png', 'g2.png', 'g3.png']),
+                'faq' => '[{"question":"What is the duration of the service?","answer":"The service usually takes around 2 hours."},{"question":"Do you provide online support?","answer":"Yes, we provide both online and onsite support."},{"question":"Can I reschedule the service?","answer":"Yes, you can reschedule 24 hours before the appointment."}]',
+                'description' => '<p>Full stack web development training.</p>',
+                'gallery' => '["services/rVaHHctxofjVKf92gV56DKNbjS4YipMKlCBM5OlP.jpg"]',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
 
             [
+                'id' => 7,
+                'partner_id' => 1,
                 'service_title' => 'Photography Service',
-                'service_category' => 'Events',
+                'service_category' => 'Cleaning Services',
                 'price_type' => 'Fixed',
                 'base_price' => 10000,
                 'discount_price' => 8500,
-                'available_days' => json_encode(['Saturday', 'Sunday']),
+                'available_days' => '["Sunday","saturday"]',
                 'location_type' => 'On Site',
                 'city' => 'Salem',
                 'state' => 'Tamil Nadu',
                 'zip_code' => '636001',
                 'address' => 'Fairlands',
-                'highlight' => json_encode(['HD photos', 'Fast delivery']),
-                'service' => json_encode(['Valet Parking']),
+                'highlight' => '["HD photos","Fast delivery"]',
+                'service' => '["Valet Parking"]',
                 'other_service' => 'Drone shoot',
-                'faq' => json_encode([
-                    [
-                        'question' => 'What is the duration of the service?',
-                        'answer' => 'The service usually takes around 2 hours.'
-                    ],
-                    [
-                        'question' => 'Do you provide online support?',
-                        'answer' => 'Yes, we provide both online and onsite support.'
-                    ],
-                    [
-                        'question' => 'Can I reschedule the service?',
-                        'answer' => 'Yes, you can reschedule 24 hours before the appointment.'
-                    ]
-                ]),
-                'description' => 'Professional photography service.',
-                'gallery' => json_encode(['g1.png', 'g2.png', 'g3.png']),
+                'faq' => '[{"question":"What is the duration of the service?","answer":"The service usually takes around 2 hours."},{"question":"Do you provide online support?","answer":"Yes, we provide both online and onsite support."},{"question":"Can I reschedule the service?","answer":"Yes, you can reschedule 24 hours before the appointment."}]',
+                'description' => '<p>Professional photography service.</p>',
+                'gallery' => '["services/8ZAkDwP6z8Egp3tJJbuGxUfvK2xdqwOafNdndylZ.jpg"]',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
 
             [
+                'id' => 8,
+                'partner_id' => 1,
                 'service_title' => 'Digital Marketing',
-                'service_category' => 'Marketing',
-                'price_type' => 'Monthly',
+                'service_category' => 'Cleaning Services',
+                'price_type' => 'Fixed',
                 'base_price' => 5000,
                 'discount_price' => 4500,
-                'available_days' => json_encode(['Monday', 'Tuesday', 'Friday']),
+                'available_days' => '["monday","tuesday","friday"]',
                 'location_type' => 'Online',
                 'city' => 'Chennai',
                 'state' => 'Tamil Nadu',
                 'zip_code' => '600004',
                 'address' => 'Adyar',
-                'highlight' => json_encode(['SEO experts', 'Fast ranking']),
-                'service' => json_encode(['Concierge Services']),
+                'highlight' => '["SEO experts","Fast ranking"]',
+                'service' => null,
                 'other_service' => 'Ads management',
-                'faq' => json_encode([
-                    [
-                        'question' => 'What is the duration of the service?',
-                        'answer' => 'The service usually takes around 2 hours.'
-                    ],
-                    [
-                        'question' => 'Do you provide online support?',
-                        'answer' => 'Yes, we provide both online and onsite support.'
-                    ],
-                    [
-                        'question' => 'Can I reschedule the service?',
-                        'answer' => 'Yes, you can reschedule 24 hours before the appointment.'
-                    ]
-                ]),
-                'description' => 'Complete digital marketing solutions.',
-                'gallery' => json_encode(['g1.png', 'g2.png', 'g3.png']),
+                'faq' => '[{"question":"What is the duration of the service?","answer":"The service usually takes around 2 hours."},{"question":"Do you provide online support?","answer":"Yes, we provide both online and onsite support."},{"question":"Can I reschedule the service?","answer":"Yes, you can reschedule 24 hours before the appointment."}]',
+                'description' => '<p>Complete digital marketing solutions.</p>',
+                'gallery' => '["services/igMuDJlCW19qsk6gur1TIMyUqfjejhZZUcBmT03U.webp"]',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
 
             [
+                'id' => 9,
+                'partner_id' => 1,
                 'service_title' => 'Graphic Design',
-                'service_category' => 'Design',
+                'service_category' => 'Cleaning Services',
                 'price_type' => 'Fixed',
                 'base_price' => 1500,
                 'discount_price' => 1200,
-                'available_days' => json_encode(['Monday', 'Thursday']),
+                'available_days' => null,
                 'location_type' => 'Online',
                 'city' => 'Madurai',
                 'state' => 'Tamil Nadu',
                 'zip_code' => '625002',
                 'address' => 'Anna Nagar',
-                'highlight' => json_encode(['Creative designs', 'Fast delivery']),
-                'service' => json_encode(['Hair and Beauty Service']),
+                'highlight' => '["Creative designs","Fast delivery"]',
+                'service' => '["Hair and Beauty Service"]',
                 'other_service' => 'Logo design',
-                'faq' => json_encode([
-                    [
-                        'question' => 'What is the duration of the service?',
-                        'answer' => 'The service usually takes around 2 hours.'
-                    ],
-                    [
-                        'question' => 'Do you provide online support?',
-                        'answer' => 'Yes, we provide both online and onsite support.'
-                    ],
-                    [
-                        'question' => 'Can I reschedule the service?',
-                        'answer' => 'Yes, you can reschedule 24 hours before the appointment.'
-                    ]
-                ]),
-                'description' => 'Creative graphic design services.',
-                'gallery' => json_encode(['g1.png', 'g2.png', 'g3.png']),
+                'faq' => '[{"question":"What is the duration of the service?","answer":"The service usually takes around 2 hours."},{"question":"Do you provide online support?","answer":"Yes, we provide both online and onsite support."},{"question":"Can I reschedule the service?","answer":"Yes, you can reschedule 24 hours before the appointment."}]',
+                'description' => '<p>Creative graphic design services.</p>',
+                'gallery' => '["services/brRGRQBVNgU78L49ZAdHbCE6TxDjdBVSc3LYGxo8.jpg"]',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
 
             [
-                'service_title' => 'Car Washing',
-                'service_category' => 'Cleaning',
+                'id' => 11,
+                'partner_id' => 1,
+                'service_title' => 'Home Electrical Services',
+                'service_category' => 'Repair Services',
                 'price_type' => 'Fixed',
-                'base_price' => 400,
-                'discount_price' => 350,
-                'available_days' => json_encode(['Saturday', 'Sunday']),
-                'location_type' => 'On Site',
-                'city' => 'Erode',
+                'base_price' => 1000,
+                'discount_price' => 800,
+                'available_days' => null,
+                'location_type' => 'Both',
+                'city' => 'Ramnad',
                 'state' => 'Tamil Nadu',
-                'zip_code' => '638001',
-                'address' => 'Perundurai',
-                'highlight' => json_encode(['Quick wash', 'Affordable']),
-                'service' => json_encode(['Valet Parking']),
-                'other_service' => 'Interior cleaning',
-                'faq' => json_encode([
-                    [
-                        'question' => 'What is the duration of the service?',
-                        'answer' => 'The service usually takes around 2 hours.'
-                    ],
-                    [
-                        'question' => 'Do you provide online support?',
-                        'answer' => 'Yes, we provide both online and onsite support.'
-                    ],
-                    [
-                        'question' => 'Can I reschedule the service?',
-                        'answer' => 'Yes, you can reschedule 24 hours before the appointment.'
-                    ]
-                ]),
-                'description' => 'Professional car washing.',
-                'gallery' => json_encode(['g1.png', 'g2.png', 'g3.png']),
+                'zip_code' => '623705',
+                'address' => 'Raja Lakshmi Nagar',
+                'highlight' => '["On time finish","No extra charge","Fixed Rate"]',
+                'service' => null,
+                'other_service' => 'Home Electrical Services',
+                'faq' => '[{"question":"Refund","answer":"Yes"},{"question":"Service Warenty","answer":"Yes"}]',
+                'description' => '<p>Professional home electrical services including wiring, appliance repair, and installations.</p>',
+                'gallery' => '["services/xtNq00L1NIJPhL1hRBub8TFLPdSswhHfmv6IeHvv.jpg","services/UZKmOzYu7dHIX0rpWO3DA86IY8lcCsn85CjmQunN.jpg"]',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],

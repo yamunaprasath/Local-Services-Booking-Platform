@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Http\Controllers\User;
+namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Services;
 use Illuminate\Http\Request;
 
 class ServiceListController extends Controller
@@ -12,7 +13,8 @@ class ServiceListController extends Controller
      */
     public function index()
     {
-        return view('frontend.service-list');
+        $services = Services::latest()->paginate(9);
+        return view('frontend.service-list', compact('services'));
     }
 
     /**

@@ -1,6 +1,38 @@
-<div class="main-header">
-    <!-- Header -->
-    <header class="header-eight wow fadeInDown" data-wow-delay="0.3">
+<div class="main-header main-header-nine">
+    <div class="header-topbar topbar-four topbar-nine text-center">
+        <div class="container-fluid">
+            <div class="d-flex align-items-center justify-content-between flex-wrap">
+                <div class="d-flex align-items-center flex-wrap">
+                    <p class="d-flex align-items-center fs-14 mb-0 me-3 "><i class="isax isax-call5 me-2"></i>Toll Free
+                        : +91 123 456 789</p>
+                    <p class="mb-0 d-flex align-items-center fs-14"><i class="isax isax-message-text-15 me-2"></i>Email
+                        : <a href="mailto:example@gmail.com" class="">example@gmail.com</a></p>
+                </div>
+                <div class="d-flex align-items-center">
+                    <div class="dropdown flag-dropdown me-3 mt-1">
+                        <a href="#" class="dropdown-toggle d-inline-flex" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            <img src=" {{ asset('/images/flags/us-flag.svg') }}" class="me-2" alt="flag">ENG
+                        </a>
+                        <ul class="dropdown-menu p-2 mt-2">
+                            <li>
+                                <a class="dropdown-item rounded d-flex align-items-center" href="#">
+                                    <img src=" {{ asset('/images/flags/us-flag.svg') }}" class="me-2" alt="flag">ENG
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item rounded d-flex align-items-center" href="#">
+                                    <img src=" {{ asset('/images/flags/france-flag.svg') }}" class="me-2" alt="flag">FRA
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <header class="header-four header-nine">
         <div class="container-fluid">
             <div class="offcanvas-info">
                 <div class="offcanvas-wrap">
@@ -8,7 +40,7 @@
                         <div class="offcanvas-head">
                             <div class="d-flex justify-content-between align-items-center mb-3">
                                 <a href="index.html" class="black-logo-responsive">
-                                    <img src="{{ asset('images/logo.png') }}" alt="logo-img p-1" width="200">
+                                    <img src="{{ asset('images/logo.png') }}" alt="logo-img">
                                 </a>
                                 <a href="index.html" class="white-logo-responsive">
                                     <img src="{{ asset('images/logo.png') }}" alt="logo-img p-1" width="200">
@@ -50,33 +82,25 @@
                                                 </li>
                                                 <li>
                                                     <a class="dropdown-item rounded d-flex align-items-center" href="#">
-                                                        <img src="{{ asset('images/flags/arab-flag.svg') }}"
-                                                            class="me-2" alt="flag">ARA
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a class="dropdown-item rounded d-flex align-items-center" href="#">
                                                         <img src="{{ asset('images/flags/france-flag.svg') }}"
                                                             class="me-2" alt="flag">FRA
                                                     </a>
                                                 </li>
                                             </ul>
                                         </div>
-                                        <div class="dropdown">
-                                            <a href="#" class="dropdown-toggle bg-white border d-block"
-                                                data-bs-toggle="dropdown" aria-expanded="false">
-                                                USD
-                                            </a>
-                                            <ul class="dropdown-menu p-2">
-                                                <li><a class="dropdown-item rounded" href="#">USD</a></li>
-                                                <li><a class="dropdown-item rounded" href="#">YEN</a></li>
-                                                <li><a class="dropdown-item rounded" href="#">EURO</a></li>
-                                            </ul>
-                                        </div>
                                     </div>
                                 </div>
-                                <div><a href="#" class="text-white btn btn-dark w-100 mb-2" data-bs-toggle="modal"
-                                        data-bs-target="#login-modal">Sign In</a></div>
+                                @if(Auth::check())
+                                <form action="{{ route('logout') }}" method="POST">
+                                    @csrf
+                                    <button type="submit" class="text-white btn btn-dark w-100 mb-2">Logout</button>
+                                </form>
+                                @else
+                                <div><a href="{{ route('register') }}"
+                                        class="text-white btn btn-primary w-100 mb-2">Sign Up</a></div>
+                                <div><a href="{{ route('login') }}" class="text-white btn btn-dark w-100 mb-2">Sign
+                                        In</a></div>
+                                @endif
                             </div>
                         </div>
                     </div>
@@ -84,7 +108,7 @@
             </div>
             <div class="offcanvas-overlay"></div>
             <div class="header-nav">
-                <div class="main-menu-wrapper">
+                <div class="main-menu-wrapper p-0">
                     <div class="navbar-logo">
                         <a class="logo-white header-logo" href="{{ route('home') }}">
                             <img src="{{ asset('images/logo.png') }}" class="logo p-1" width="200" alt="Logo">
@@ -98,262 +122,28 @@
                             <li class="active">
                                 <a href="#" class="active">Home</a>
                             </li>
-                            <li class="has-submenu megamenutab">
-                                <a href="#">Services<i class="fa-solid fa-angle-down"></i></a>
-                                <ul class="submenu mega-submenu">
+                            <li class="has-submenu mega-innermenu">
+                                <a href="#">Servies<i class="fa-solid fa-angle-down"></i></a>
+                                <ul class="submenu mega-submenu p-0">
                                     <li>
                                         <div class="megamenu-wrapper">
                                             <div class="row">
-                                                <!-- Left Side Tabs -->
-                                                <div class="col-lg-3">
-                                                    <div class="nav flex-column nav-pills menu-tab" id="menu-tab"
-                                                        role="tablist" aria-orientation="vertical">
-                                                        <ul>
-                                                            <li>
-                                                                <a class="nav-link active" id="activity-tab"
-                                                                    data-bs-toggle="tab" href="#activity" role="tab">
-                                                                    Activity
-                                                                </a>
-                                                            </li>
-                                                            <li>
-                                                                <a class="nav-link" id="visa-tab" data-bs-toggle="tab"
-                                                                    href="#visa" role="tab">
-                                                                    Visa
-                                                                </a>
-                                                            </li>
-                                                            <li>
-                                                                <a class="nav-link" id="guide-tab" data-bs-toggle="tab"
-                                                                    href="#guide" role="tab">
-                                                                    Guide
-                                                                </a>
-                                                            </li>
-                                                            <li>
-                                                                <a class="nav-link" id="pages-tab" data-bs-toggle="tab"
-                                                                    href="#pages" role="tab">
-                                                                    Pages
-                                                                </a>
-                                                            </li>
-                                                            <li>
-                                                                <a class="nav-link" id="dashboard-tab"
-                                                                    data-bs-toggle="tab" href="#dashboard" role="tab">
-                                                                    Dashboard
-                                                                </a>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
+                                                <div class="col-lg-6">
+                                                    <h6>Flight Bookings</h6>
+                                                    <ul>
+                                                        <li><a href="flight-grid.html">Flight
+                                                                Grid</a></li>
+                                                        <li><a href="flight-list.html">Flight List</a></li>
+                                                        <li><a href="flight-details.html">Flight Details</a></li>
+                                                        <li><a href="flight-booking-confirmation.html">Flight
+                                                                Booking</a></li>
+                                                        <li><a href="add-flight.html">Add Flight</a></li>
+                                                    </ul>
                                                 </div>
-                                                <!-- Right Side Content -->
-                                                <div class="col-lg-9">
-                                                    <div class="tab-content tab-menulist" id="menu-tabContent">
-                                                        <div class="tab-pane fade show active" id="activity"
-                                                            role="tabpanel">
-                                                            <div class="row">
-                                                                <div class="col-lg-6">
-                                                                    <h6>Activity</h6>
-                                                                    <ul>
-                                                                        <li><a href="activity-grid.html">Activity
-                                                                                Grid</a></li>
-                                                                        <li><a href="activity-list.html">Activity
-                                                                                List</a></li>
-                                                                        <li><a href="activity-map.html">Activity
-                                                                                Map</a></li>
-                                                                        <li><a href="activity-details.html">Activity
-                                                                                Details</a></li>
-                                                                        <li><a
-                                                                                href="activity-booking-confirmation.html">Activity
-                                                                                Booking Confirmation</a></li>
-                                                                        <li><a href="add-activity.html">Add
-                                                                                Activity</a></li>
-                                                                    </ul>
-                                                                </div>
-                                                                <div class="col-lg-6">
-                                                                    <div class="menu-img">
-                                                                        <img src="{{ asset('images/menu/activity.jpg') }}"
-                                                                            alt="img" class="img-fluid">
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="tab-pane fade" id="visa" role="tabpanel">
-                                                            <div class="row">
-                                                                <div class="col-lg-6">
-                                                                    <h6>Visa</h6>
-                                                                    <ul>
-                                                                        <li><a href="activity-grid.html">Visa
-                                                                                Grid</a></li>
-                                                                        <li><a href="activity-list.html">Visa
-                                                                                List</a></li>
-                                                                        <li><a href="activity-map.html">Visa
-                                                                                Map</a>
-                                                                        </li>
-                                                                        <li><a href="activity-details.html">Visa
-                                                                                Details</a></li>
-                                                                        <li><a
-                                                                                href="activity-booking-confirmation.html">Visa
-                                                                                Booking Confirmation</a></li>
-                                                                        <li><a href="add-activity.html">Add
-                                                                                Visa</a>
-                                                                        </li>
-                                                                        <li><a href="track-visa.html">Track
-                                                                                Visa</a>
-                                                                        </li>
-                                                                    </ul>
-                                                                </div>
-                                                                <div class="col-lg-6">
-                                                                    <div class="menu-img">
-                                                                        <img src="{{ asset('images/menu/visa.jpg') }}"
-                                                                            alt="img" class="img-fluid">
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="tab-pane fade" id="guide" role="tabpanel">
-                                                            <div class="row">
-                                                                <div class="col-lg-6">
-                                                                    <h6>Guide</h6>
-                                                                    <ul>
-                                                                        <li><a href="guide-grid.html">Guide
-                                                                                Grid</a>
-                                                                        </li>
-                                                                        <li><a href="guide-details.html">Guide
-                                                                                Details</a></li>
-                                                                        <li><a href="guide-booking.html">Guide
-                                                                                Booking</a></li>
-                                                                        <li><a href="guide-booking-confirmation.html">Guide
-                                                                                Booking Confirmation</a></li>
-                                                                        <li><a href="add-guide.html">Add
-                                                                                Guide</a>
-                                                                        </li>
-                                                                    </ul>
-                                                                </div>
-                                                                <div class="col-lg-6">
-                                                                    <div class="menu-img">
-                                                                        <img src="{{ asset('images/menu/guide.jpg') }}"
-                                                                            alt="img" class="img-fluid">
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="tab-pane fade" id="pages" role="tabpanel">
-                                                            <h6>Pages</h6>
-                                                            <div class="row">
-                                                                <div class="col-lg-6">
-                                                                    <ul>
-                                                                        <li><a href="about-us.html">About</a>
-                                                                        </li>
-                                                                        <li><a href="gallery.html">Gallery</a>
-                                                                        </li>
-                                                                        <li><a href="testimonial.html">Testimonials</a>
-                                                                        </li>
-                                                                        <li><a href="faq.html">Faq</a></li>
-                                                                        <li><a href="pricing-plan.html">Pricing
-                                                                                Plan</a></li>
-                                                                        <li><a href="pricing-plan-2.html">Pricing
-                                                                                Plan 2</a></li>
-                                                                        <li><a href="team.html">Teams</a></li>
-                                                                        <li><a href="invoices.html">Invoice</a>
-                                                                        </li>
-                                                                        <li><a href="blog-grid.html">Blogs
-                                                                                Grid</a>
-                                                                        </li>
-                                                                        <li><a href="blog-list.html">Blogs
-                                                                                List</a>
-                                                                        </li>
-                                                                        <li><a href="blog-details.html">Blogs
-                                                                                Details</a></li>
-                                                                        <li><a href="index-rtl.html">RTL</a>
-                                                                        </li>
-                                                                    </ul>
-                                                                </div>
-                                                                <div class="col-lg-6">
-                                                                    <ul>
-                                                                        <li><a href="destination.html">Destination</a>
-                                                                        </li>
-                                                                        <li><a href="destination-details.html">Destination
-                                                                                Details</a></li>
-                                                                        <li><a href="recently-viewed.html">Recently
-                                                                                Viewed</a></li>
-                                                                        <li><a href="booking-confirmation.html">Booking
-                                                                                Confirmation</a></li>
-                                                                        <li><a href="terms-conditions.html">Terms
-                                                                                &
-                                                                                Conditions</a></li>
-                                                                        <li><a href="privacy-policy.html">Privacy
-                                                                                Policy</a></li>
-                                                                        <li><a href="{{ route('dashboard') }}">Login</a>
-                                                                        </li>
-                                                                        <li><a href="register.html">Register</a>
-                                                                        </li>
-                                                                        <li><a href="forgot-password.html">Forgot
-                                                                                Password</a></li>
-                                                                        <li><a href="change-password.html">Change
-                                                                                Password</a></li>
-                                                                        <li><a href="error-404.html">404
-                                                                                Error</a>
-                                                                        </li>
-                                                                        <li><a href="error-500.html">500
-                                                                                Error</a>
-                                                                        </li>
-                                                                    </ul>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="tab-pane fade" id="dashboard" role="tabpanel">
-                                                            <div class="row">
-                                                                <div class="col-lg-6">
-                                                                    <h6>User Dashboard</h6>
-                                                                    <ul>
-                                                                        <li><a href="dashboard.html">User
-                                                                                Dashboard</a></li>
-                                                                        <li><a href="customer-flight-booking.html">My
-                                                                                Bookings</a></li>
-                                                                        <li><a href="review.html">Reviews</a>
-                                                                        </li>
-                                                                        <li><a href="wishlist.html">Wishlist</a>
-                                                                        </li>
-                                                                        <li><a href="wallet.html">Wallet</a>
-                                                                        </li>
-                                                                        <li><a href="payment.html">Payments</a>
-                                                                        </li>
-                                                                        <li><a href="customer-coupons.html">Offers
-                                                                                &
-                                                                                Rewards</a></li>
-                                                                        <li><a href="profile-settings.html">Profile
-                                                                                Settings</a></li>
-                                                                        <li><a
-                                                                                href="notification.html">Notifications</a>
-                                                                        </li>
-                                                                        <li><a href="my-profile.html">My
-                                                                                Profile</a>
-                                                                        </li>
-                                                                        <li><a href="profile-settings.html">Settings</a>
-                                                                        </li>
-                                                                    </ul>
-                                                                </div>
-                                                                <div class="col-lg-6">
-                                                                    <h6>Agent Dashboard</h6>
-                                                                    <ul>
-                                                                        <li><a href="agent-dashboard.html">Dashboard</a>
-                                                                        </li>
-                                                                        <li><a href="agent-listings.html">Listings</a>
-                                                                        </li>
-                                                                        <li><a
-                                                                                href="agent-hotel-booking.html">Bookings</a>
-                                                                        </li>
-                                                                        <li><a href="agent-enquirers.html">Enquiries</a>
-                                                                        </li>
-                                                                        <li><a href="agent-earnings.html">Earnings</a>
-                                                                        </li>
-                                                                        <li><a href="agent-payouts.html">Payouts</a>
-                                                                        </li>
-                                                                        <li><a href="agent-review.html">Reviews</a>
-                                                                        </li>
-                                                                        <li><a href="agent-settings.html">Settings</a>
-                                                                        </li>
-                                                                    </ul>
-                                                                </div>
-                                                            </div>
-                                                        </div>
+                                                <div class="col-lg-6">
+                                                    <div class="menu-img">
+                                                        <img src=" {{  asset('/images/menu/flight.jpg') }}" alt="img"
+                                                            class="img-fluid">
                                                     </div>
                                                 </div>
                                             </div>
@@ -370,17 +160,28 @@
                         </ul>
                     </nav>
                     <div class="header-btn d-flex align-items-center">
-                        <div class="fav-dropdown me-3">
-                            <a href="wishlist.html" class="position-relative text-white wishlist-icon">
-                                <i class="isax isax-heart"></i><span class="count-icon bg-secondary text-white">0</span>
-                            </a>
-                        </div>
                         <div class="d-flex align-items-center">
-                            <a href="{{ route('dashboard') }}" class="text-white btn btn-primary w-100"
-                                data-bs-toggle="modal" data-bs-target="#login-modal"><i
+                            @if(Auth::check())
+                            <form action="{{ route('logout') }}" method="POST">
+                                @csrf
+                                <div class="d-flex align-items-center">
+                                    <a href="{{ route('partner.dashboard') }}"
+                                        class="text-white btn btn-dark w-100 d-flex align-items-center justify-content-center gap-2">
+                                        <i class="fa-solid fa-gauge"></i> Profile
+                                    </a>
+
+                                    <button type="submit"
+                                        class="text-white btn btn-primary w-100 d-flex align-items-center justify-content-center gap-2">
+                                        <i class="fa-solid fa-arrow-right-from-bracket"></i> Logout
+                                    </button>
+                                </div>
+                            </form>
+                            @else
+                            <a href="{{ route('login') }}" class="text-white btn btn-primary w-100"><i
                                     class="isax isax-lock5 me-1"></i>Login</a>
-                            <a href="{{ route('dashboard') }}" class="text-white btn btn-dark w-100"><i
+                            <a href="{{ route('register') }}" class="text-white btn btn-dark w-100"><i
                                     class="isax isax-user-minus me-1"></i>Register</a>
+                            @endif
                         </div>
                         <div class="header__hamburger d-xl-none my-auto">
                             <div class="sidebar-menu">
@@ -392,5 +193,4 @@
             </div>
         </div>
     </header>
-    <!-- /Header -->
 </div>

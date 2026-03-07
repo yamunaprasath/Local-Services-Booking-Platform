@@ -1,28 +1,12 @@
 @extends('index')
 
-@section('title', 'Service List Page')
+@section('title', 'Service List')
+@section('breadcrumb', 'Service Listing')
 
-<div class="breadcrumb-bar breadcrumb-bg-09 text-center">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12 col-12">
-                <h2 class="breadcrumb-title mb-2">Activity</h2>
-                <nav aria-label="breadcrumb">
-                    <ol class="breadcrumb justify-content-center mb-0">
-                        <li class="breadcrumb-item"><a href="index.html"><i class="isax isax-home5"></i></a></li>
-                        <li class="breadcrumb-item">Activity</li>
-                        <li class="breadcrumb-item active" aria-current="page">Activity Grid</li>
-                    </ol>
-                </nav>
-            </div>
-        </div>
-    </div>
-</div>
-
+@section('content')
+<x-breadcrumb />
 <div class="content">
     <div class="container">
-
-        <!-- Activities Search -->
         <div class="card">
             <div class="card-body">
                 <div class="banner-form">
@@ -33,8 +17,7 @@
                         <div class="d-lg-flex">
                             <div class="d-flex  form-info">
                                 <div class="form-item booking-dropdown dropdown">
-                                    <div data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false"
-                                        role="menu">
+                                    <div data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
                                         <label for='' class="form-label fs-14 text-default mb-1">Location</label>
                                         <input type="text" class="form-control value-input" value="Dubai">
                                         <p class="fs-12 mb-0">United Arab Emirates</p>
@@ -60,8 +43,7 @@
                                     </div>
                                 </div>
                                 <div class="form-item booking-dropdown dropdown">
-                                    <div data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false"
-                                        role="menu">
+                                    <div data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
                                         <label class="form-label fs-14 text-default mb-1">Select
                                             Service</label>
                                         <input type="text" class="form-control value-input" value="Ballon Ride">
@@ -116,8 +98,7 @@
                                     <p class="fs-12 mb-0">Monday</p>
                                 </div>
                                 <div class="form-item dropdown">
-                                    <div data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false"
-                                        role="menu">
+                                    <div data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
                                         <label class="form-label fs-14 text-default mb-1">Person
                                             required</label>
                                         <div class="home-eight-title text-dark member-count">
@@ -201,7 +182,7 @@
 
         <div class="row mt-5">
             <!-- Sidebar -->
-            <div class="col-xl-3 col-lg-4 theiaStickySidebar">
+            <div class="col-xl-3 col-lg-4 ">
                 <div class="card filter-sidebar mb-4 mb-lg-0">
                     <div class="card-header d-flex align-items-center justify-content-between">
                         <h5>Filters</h5>
@@ -462,9 +443,10 @@
             </div>
             <!-- /Sidebar -->
 
-            <div class="col-xl-9 col-lg-8 theiaStickySidebar">
+            <div class="col-xl-9 col-lg-8">
                 <div class="d-flex align-items-center justify-content-between flex-wrap">
-                    <h6 class="mb-3">1920 Activities <span class="fw-normal">Found on Your Search</span></h6>
+                    <h6 class="mb-3">{{ $services->count() }} Services <span class="fw-normal">Found on Your
+                            Search Outof</span> {{ $services->total() }} Services</h6>
                     <div class="d-flex align-items-center flex-wrap">
                         <div class="dropdown mb-3">
                             <a href="#" class="dropdown-toggle py-2" data-bs-toggle="dropdown" aria-expanded="false">
@@ -514,23 +496,25 @@
                         </div>
                     </div>
                 </div>
+                @if(!Auth::check())
                 <div class="bg-info br-10 p-3 pb-2 mb-4">
                     <div class="d-flex align-items-center justify-content-between flex-wrap">
                         <p class="fs-14 fw-medium mb-2 d-inline-flex align-items-center"><i
                                 class="isax isax-info-circle me-2"></i>Save an average of 15% on thousands of
                             activities when you're signed in</p>
-                        <a href="login.html" class="btn btn-white btn-sm mb-2">Sign In</a>
+                        <a href="{{ route('login') }}" class="btn btn-white btn-sm mb-2">Sign In</a>
                     </div>
                 </div>
-                <div class="row justify-content-center">
-
+                @endif
+                <div class="row">
                     <!-- Activity Grid -->
+                    @foreach($services as $service)
                     <div class="col-xl-4 col-md-6 d-flex">
                         <div class="place-item mb-4 flex-fill">
                             <div class="place-img">
-                                <a href="activity-details.html">
-                                    <img src=" {{ asset('/images/activities/activity-01.jpg') }}" class="img-fluid"
-                                        alt="img">
+                                <a href="{{ route('partner.service.list.edit', $service->id) }}">
+                                    <img src="{{ asset('storage/' . ($service->gallery[0] ?? 'services/default.jpg')) }}"
+                                        class="img-fluid service-img" alt="img">
                                 </a>
                                 <div class="fav-item">
                                     <button class="fav-icon selected border-0">
@@ -549,11 +533,13 @@
                                         <span class="fs-14 fw-medium text-gray-9">4.9</span> (672 reviews)
                                     </p>
                                 </div>
-                                <h5 class="mt-3 mb-1 text-truncate"><a href="activity-details.html">Snorkeling
-                                        Tour</a></h5>
+                                <h5 class="mt-3 mb-1 text-truncate"><a
+                                        href="{{ route('partner.service.list.edit', $service->id) }}">{{ $service->service_title }}</a>
+                                </h5>
                                 <div class="d-flex align-items-center justify-content-between mb-2">
                                     <p class="d-flex align-items-center fs-14 mb-0">
-                                        <i class="isax isax-location5 me-1"></i> Phuket, Thailand
+                                        <i class="isax isax-location5 me-1"></i> {{ $service->city }},
+                                        {{ $service->state }}
                                     </p>
                                     <p class="d-flex align-items-center fs-14 mb-0">
                                         <i class="isax isax-clock5 me-1"></i> 4 hrs
@@ -561,9 +547,10 @@
                                 </div>
                                 <div class="d-flex align-items-center justify-content-between border-top pt-3">
 
-                                    <h5 class="text-primary text-nowrap d-flex align-items-center gap-1"><span
-                                            class="fs-14 fw-normal text-gray-6">Starts From</span> $400 <span
-                                            class="text-gray-3 text-line">$480</span></h5>
+                                    <p class="text-primary fw-medium text-nowrap d-flex align-items-center gap-1"><span
+                                            class="fs-14 fw-normal text-gray-6">Starts From</span> ₹{{
+                                        $service->discount_price }} <span class="text-gray-3 text-line">₹{{
+                                            $service->base_price }}</span></p>
                                     <a href="#" class="d-flex align-items-center overflow-hidden">
                                         <span class="avatar avatar-md flex-shrink-0">
                                             <img src=" {{ asset('/images/users/user-08.jpg') }}" class="rounded-circle"
@@ -574,136 +561,13 @@
                             </div>
                         </div>
                     </div>
-                    <!-- /Activity Grid -->
-
-                    <!-- Activity Grid -->
-                    <div class="col-xl-4 col-md-6 d-flex">
-                        <div class="place-item mb-4 flex-fill">
-                            <div class="place-img">
-                                <a href="activity-details.html">
-                                    <img src=" {{ asset('/images/activities/activity-02.jpg') }}" class="img-fluid"
-                                        alt="img">
-                                </a>
-                                <div class="fav-item">
-                                    <button class="fav-icon border-0">
-                                        <i class="isax isax-heart5"></i>
-                                    </button>
-                                    <span class="badge bg-info d-inline-flex align-items-center"><i
-                                            class="isax isax-ranking me-1"></i>Trending</span>
-                                </div>
-                            </div>
-                            <div class="place-content activity-content">
-                                <div class="d-flex align-items-center badge-right position-absolute">
-                                    <span class="rating fs-12 me-1">
-                                        <i class="fas fa-star filled"></i>
-                                    </span>
-                                    <p class="fs-14 text-gray-2">
-                                        <span class="fs-14 fw-medium text-gray-9">4.6</span> (450 reviews)
-                                    </p>
-                                </div>
-                                <h5 class="mt-3 mb-1 text-truncate"><a href="activity-details.html">Alpine
-                                        Snowboarding</a></h5>
-                                <div class="d-flex align-items-center justify-content-between mb-2">
-                                    <p class="d-flex align-items-center fs-14 mb-0">
-                                        <i class="isax isax-location5 me-1"></i> Zermatt, Switzerland
-                                    </p>
-                                    <p class="d-flex align-items-center fs-14 mb-0">
-                                        <i class="isax isax-clock5 me-1"></i> 3 hrs
-                                    </p>
-                                </div>
-                                <div class="d-flex align-items-center justify-content-between border-top pt-3">
-
-                                    <h5 class="text-primary text-nowrap d-flex align-items-center gap-1"><span
-                                            class="fs-14 fw-normal text-gray-6">Starts From</span> $150 <span
-                                            class="text-gray-3 text-line">$200</span></h5>
-                                    <a href="#" class="d-flex align-items-center overflow-hidden">
-                                        <span class="avatar avatar-md flex-shrink-0me-1">
-                                            <img src=" {{ asset('/images/users/user-09.jpg') }}" class="rounded-circle"
-                                                alt="img">
-                                        </span>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- /Activity Grid -->
-
-                    <!-- Activity Grid -->
-                    <div class="col-xl-4 col-md-6 d-flex">
-                        <div class="place-item mb-4 flex-fill">
-                            <div class="place-img">
-                                <a href="activity-details.html">
-                                    <img src=" {{ asset('/images/activities/activity-03.jpg') }}" class="img-fluid"
-                                        alt="img">
-                                </a>
-                                <div class="fav-item">
-                                    <button class="fav-icon border-0">
-                                        <i class="isax isax-heart5"></i>
-                                    </button>
-                                    <span class="badge bg-info d-inline-flex align-items-center"><i
-                                            class="isax isax-ranking me-1"></i>Trending</span>
-                                </div>
-                            </div>
-                            <div class="place-content activity-content">
-                                <div class="d-flex align-items-center badge-right position-absolute">
-                                    <span class="rating fs-12 me-1">
-                                        <i class="fas fa-star filled"></i>
-                                    </span>
-                                    <p class="fs-14 text-gray-2">
-                                        <span class="fs-14 fw-medium text-gray-9">4.5</span> (320 reviews)
-                                    </p>
-                                </div>
-                                <h5 class="mt-3 mb-1 text-truncate"><a href="activity-details.html">White Water
-                                        Rafting</a></h5>
-                                <div class="d-flex align-items-center justify-content-between mb-2">
-                                    <p class="d-flex align-items-center fs-14 mb-0">
-                                        <i class="isax isax-location5 me-1"></i> Rotorua, New Zealand
-                                    </p>
-                                    <p class="d-flex align-items-center fs-14 mb-0">
-                                        <i class="isax isax-clock5 me-1"></i> 5 hrs
-                                    </p>
-                                </div>
-                                <div class="d-flex align-items-center justify-content-between border-top pt-3">
-
-                                    <h5 class="text-primary text-nowrap d-flex align-items-center gap-1"><span
-                                            class="fs-14 fw-normal text-gray-6">Starts From</span> $350 <span
-                                            class="text-gray-3 text-line">$400</span></h5>
-                                    <a href="#" class="d-flex align-items-center overflow-hidden">
-                                        <span class="avatar avatar-md flex-shrink-0">
-                                            <img src=" {{ asset('/images/users/user-10.jpg') }}" class="rounded-circle"
-                                                alt="img">
-                                        </span>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- /Activity Grid -->
-
+                    @endforeach
                 </div>
-
-                <!-- Pagination -->
-                <nav class="pagination-nav">
-                    <ul class="pagination justify-content-center">
-                        <li class="page-item disabled">
-                            <a class="page-link" href="#" aria-label="Previous">
-                                <span aria-hidden="true"><i class="fa-solid fa-chevron-left"></i></span>
-                            </a>
-                        </li>
-                        <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                        <li class="page-item"><a class="page-link" href="#">4</a></li>
-                        <li class="page-item"><a class="page-link" href="#">5</a></li>
-                        <li class="page-item">
-                            <a class="page-link" href="#" aria-label="Next">
-                                <span aria-hidden="true"><i class="fa-solid fa-chevron-right"></i></span>
-                            </a>
-                        </li>
-                    </ul>
-                </nav>
-                <!-- /Pagination -->
+                <div class="d-flex justify-content-center">
+                    {{ $services->links('pagination.pagination') }}
+                </div>
             </div>
         </div>
     </div>
 </div>
+@endsection
